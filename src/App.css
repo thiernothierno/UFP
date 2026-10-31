@@ -1,0 +1,46 @@
+body {
+  background-color: white;
+  margin: 50px;
+}
+
+/* MemberHomePage  */
+table {
+  width: 100%;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+.summary-page.tr:nth-child(even) {
+  background-color: cyan;
+}
+
+.custom-input {
+  width: 50px;
+  height: 30px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: bisque;
+}
+
+/* search bar  */
+.search-bar {
+  padding: 10px;
+  background-color: bisque;
+  color: black;
+  width: 250px;
+  border: 1px solid #ccc;
+}
