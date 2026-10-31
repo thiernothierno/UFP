@@ -1,17 +1,19 @@
 import { useState } from "react";
-import Parent from "./components/Parent";
-import MonthlyPaymentTracking from "./components/MonthlyPaymentTracking";
-import Infractions from "./components/Infractions";
-import PaymentSummary from "./components/PaymentSummary";
+import Parent from "./layout/Parent";
+
 import "./App.css";
+import Rules from "./components/rules/Rules";
+import "./components/infractions/infractions.css";
+import "./components/payments/payment.css";
+import "./components/summary/summary.css";
+import Assistance from "./components/assistance/Assistance";
 
 const App = () => {
   return (
     <div>
-      {/* <MonthlyPaymentTracking /> */}
-      {/* <Infractions /> */}
-      <Parent />
-      {/* <PaymentSummary /> */}
+      {/* <Parent /> */}
+      {/* <Rules /> */}
+      <Assistance />
     </div>
   );
 };

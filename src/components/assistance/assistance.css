@@ -1,0 +1,133 @@
+.assistance-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.add-assistance-button {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: bisque;
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.assistance-form {
+  max-width: 600px;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.assistance-form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.assistance-form input,
+.assistance-form textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font: inherit;
+}
+
+.assistance-form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.assistance-form-buttons button {
+  padding: 8px 14px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.assistance-posts {
+  margin-top: 30px;
+}
+
+.assistance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 280px));
+  gap: 12px;
+  margin-top: 15px;
+  justify-content: start;
+}
+
+.assistance-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: 170px;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  overflow-wrap: anywhere;
+}
+
+.assistance-card h3 {
+  font-size: 15px;
+  margin: 0 0 8px;
+}
+
+.assistance-card p {
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  flex-grow: 1;
+}
+
+.assistance-card small {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.assistance-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.assistance-actions button {
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.assistance-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: 190px;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  overflow-wrap: anywhere;
+}
+
+.assistance-card p {
+  flex-grow: 1;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}

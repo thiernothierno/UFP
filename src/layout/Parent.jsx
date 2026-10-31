@@ -1,9 +1,14 @@
 import { useState } from "react";
-import members from "../../List-of-Members";
+import members from "../data/List-of-Members";
+import InfractionsPage from "../components/infractions/InfractionsPage";
+import PaymentSummaryPage from "../components/summary/PaymentSummaryPage";
+import PaymentTrackingPage from "../components/payments/PaymentTrackingPage";
 
-import InfractionsPage from "./InfractionsPage";
-import PaymentSummaryPage from "./PaymentSummaryPage";
-import PaymentTrackingPage from "./PaymentTrackingPage";
+//- Managing the selected year.
+// - Holding payment and infraction data for each year.
+// - Managing which page is currently displayed.
+// - Passing the correct data to each page.
+// In other words, Parent.jsx coordinates the application, while the individual components handle their own tables and calculations.
 
 const paymentMonths = [
   "Jan",

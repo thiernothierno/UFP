@@ -114,7 +114,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
       />
 
       <div style={{ overflowX: "auto" }}>
-        <table border="1" cellPadding="8">
+        <table border="1" cellPadding="8" className="summary-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -128,7 +128,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
 
           <tbody>
             {filteredRows.map((row) => (
-              <tr key={row.id} className="summary-page">
+              <tr key={row.id}>
                 <td>{row.id}</td>
                 <td>{row.First_Name}</td>
                 <td>{row.Last_Name}</td>
@@ -145,7 +145,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
           </tbody>
 
           <tfoot>
-            <tr className="summary-page">
+            <tr>
               <th colSpan="3">Grand Total</th>
 
               <th>{currency(grandPaymentTotal)}</th>
