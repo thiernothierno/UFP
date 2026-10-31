@@ -38,62 +38,126 @@ const infractionMonths = [
 
 const categories = ["MSG", "Late", "Absence"];
 
+// Creates empty payment and infraction records for a year
+const createYearData = () => ({
+  payments: members.map((member) => ({
+    ...member,
+    ...Object.fromEntries(paymentMonths.map((month) => [month, ""])),
+  })),
+
+  infractions: members.map((member) => ({
+    ...member,
+    ...Object.fromEntries(
+      infractionMonths.flatMap((month) =>
+        categories.map((category) => [`${month}_${category}`, ""]),
+      ),
+    ),
+  })),
+});
+
 const Parent = () => {
-  // Select which page to display
+  const date = new Date();
+  const year = date.getFullYear();
+  // Selected year
+  const [selectedYear, setSelectedYear] = useState(year);
+
+  // Data belonging to each year
+  const [yearlyData, setYearlyData] = useState(() => ({
+    2026: createYearData(),
+    2027: createYearData(),
+  }));
+
+  // Which page is currently displayed
   const [activePage, setActivePage] = useState("payments");
 
-  // Shared payment data
-  const [monthlyValues, setMonthlyValues] = useState(() =>
-    members.map((member) => ({
-      ...member,
-      ...Object.fromEntries(paymentMonths.map((month) => [month, ""])),
-    })),
-  );
+  // Get the records for the selected year
+  const currentYearData = yearlyData[selectedYear];
 
-  // Shared infraction data
-  const [infractionRows, setInfractionRows] = useState(() =>
-    members.map((member) => ({
-      ...member,
-      ...Object.fromEntries(
-        infractionMonths.flatMap((month) =>
-          categories.map((category) => [`${month}_${category}`, ""]),
-        ),
-      ),
-    })),
-  );
+  // Update payments for the selected year
+  const updatePayments = (updater) => {
+    setYearlyData((prev) => ({
+      ...prev,
+      [selectedYear]: {
+        ...prev[selectedYear],
+        payments:
+          typeof updater === "function"
+            ? updater(prev[selectedYear].payments)
+            : updater,
+      },
+    }));
+  };
+
+  // Update infractions for the selected year
+  const updateInfractions = (updater) => {
+    setYearlyData((prev) => ({
+      ...prev,
+      [selectedYear]: {
+        ...prev[selectedYear],
+        infractions:
+          typeof updater === "function"
+            ? updater(prev[selectedYear].infractions)
+            : updater,
+      },
+    }));
+  };
+
+  // Change year and create its records if they don't exist yet
+  const handleYearChange = (event) => {
+    const year = Number(event.target.value);
+
+    setYearlyData((prev) => ({
+      ...prev,
+      [year]: prev[year] ?? createYearData(),
+    }));
+
+    setSelectedYear(year);
+  };
 
   return (
     <div>
-      {/* Page selection */}
-      <nav style={{ marginBottom: "20px" }}>
-        <button onClick={() => setActivePage("payments")}>Payments</button>
+      <h2>Member Records</h2>
 
-        <button onClick={() => setActivePage("infractions")}>
-          Infractions
-        </button>
+      {/* Year selector */}
+      <label htmlFor="year">Select Year: </label>
 
-        <button onClick={() => setActivePage("summary")}>Summary</button>
-      </nav>
+      <select id="year" value={selectedYear} onChange={handleYearChange}>
+        {[2026, 2027, 2028, 2029, 2030].map((year) => (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        ))}
+      </select>
 
-      {/* Display selected page */}
+      <hr />
+
+      {/* Page navigation */}
+      <button onClick={() => setActivePage("payments")}>Payments</button>
+
+      <button onClick={() => setActivePage("infractions")}>Infractions</button>
+
+      <button onClick={() => setActivePage("summary")}>Summary</button>
+
+      <hr />
+
+      {/* Display one page at a time */}
       {activePage === "payments" && (
         <PaymentTrackingPage
-          monthlyValues={monthlyValues}
-          setMonthlyValues={setMonthlyValues}
+          monthlyValues={currentYearData.payments}
+          setMonthlyValues={updatePayments}
         />
       )}
 
       {activePage === "infractions" && (
         <InfractionsPage
-          infractionRows={infractionRows}
-          setInfractionRows={setInfractionRows}
+          infractionRows={currentYearData.infractions}
+          setInfractionRows={updateInfractions}
         />
       )}
 
       {activePage === "summary" && (
         <PaymentSummaryPage
-          paymentRows={monthlyValues}
-          infractionRows={infractionRows}
+          paymentRows={currentYearData.payments}
+          infractionRows={currentYearData.infractions}
         />
       )}
     </div>
