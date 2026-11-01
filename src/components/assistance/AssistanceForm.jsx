@@ -21,7 +21,7 @@ const AssistanceForm = ({ post, onSave, onCancel }) => {
 
   return (
     <form className="assistance-form" onSubmit={handleSubmit}>
-      <h3>{post ? "Edit Assistance Post" : "New Assistance Post"}</h3>
+      <h3>{post ? "Edit Assistance Post" : ""}</h3>
 
       <label>Member Name</label>
       <input

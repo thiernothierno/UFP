@@ -1,0 +1,161 @@
+.meetings-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.meetings-year {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.meetings-year select {
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.month-button {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.month-button.active {
+  background-color: #dce9f7;
+  border-color: #4779ad;
+  font-weight: bold;
+}
+
+.meeting-details {
+  margin-top: 25px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.meeting-details h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.meeting-card p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.meeting-card h4 {
+  margin-bottom: 8px;
+}
+
+.meeting-bullet-list {
+  list-style: none !important;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.meeting-bullet-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.meeting-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 3px;
+  top: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.meeting-form {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meeting-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.meeting-form label {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.detail-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-input input {
+  flex: 1;
+  min-width: 0;
+}
+
+.meeting-form button,
+.meeting-details > button {
+  padding: 7px 12px;
+  cursor: pointer;
+}
+
+.meeting-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.meeting-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.meeting-actions button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.detail-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-bullet {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .months-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

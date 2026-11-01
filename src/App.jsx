@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Parent from "./layout/Parent";
+import PaymentStatus from "./layout/PaymentStatus";
 
 import "./App.css";
 import Rules from "./components/rules/Rules";
@@ -7,13 +7,17 @@ import "./components/infractions/infractions.css";
 import "./components/payments/payment.css";
 import "./components/summary/summary.css";
 import Assistance from "./components/assistance/Assistance";
+import BoardMeetings from "./components/meetings/BoardMeetings";
+import AgendaSuggestion from "./components/agenda/AgendaSuggestion";
 
 const App = () => {
   return (
     <div>
-      {/* <Parent /> */}
+      <PaymentStatus />
       {/* <Rules /> */}
-      <Assistance />
+      {/* <Assistance /> */}
+      {/* <BoardMeetings /> */}
+      {/* <AgendaSuggestion /> */}
     </div>
   );
 };

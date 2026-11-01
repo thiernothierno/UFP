@@ -67,7 +67,7 @@ const Assistance = () => {
           className="add-assistance-button"
           onClick={() => setShowForm(true)}
         >
-          + Post Assistance
+          Post Your Inquiry
         </button>
       )}
 

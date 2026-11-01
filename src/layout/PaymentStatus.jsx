@@ -60,7 +60,7 @@ const createYearData = () => ({
   })),
 });
 
-const Parent = () => {
+const PaymentStatus = () => {
   const date = new Date();
   const year = date.getFullYear();
   // Selected year
@@ -169,4 +169,4 @@ const Parent = () => {
   );
 };
 
-export default Parent;
+export default PaymentStatus;
