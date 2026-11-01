@@ -1,8 +1,9 @@
 import { useState } from "react";
 import PaymentStatus from "./layout/PaymentStatus";
+import result from "./components/ruling-schedule/schedule";
 
 import "./App.css";
-import Rules from "./components/rules/Rules";
+import Rules from "./components/rules-and-regulations/Rules";
 import "./components/infractions/infractions.css";
 import "./components/payments/payment.css";
 import "./components/summary/summary.css";
