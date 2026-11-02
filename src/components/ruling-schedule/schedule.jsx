@@ -27,7 +27,7 @@ const regular_member_NY = [
   "Petit",
   "Tara",
   "Cris",
-  "Ben",
+  
 ];
 
 // Randomly select a name and remove it from the original list
@@ -42,13 +42,20 @@ function create_groups() {
   const boardMembers = [...board_member];
   const regularMembers = [...regular_member_NY];
 
-  const groups = [];
+  console.log("Board members", boardMembers);
+  console.log("Regular members", regularMembers.length);
 
+  const groups = [];
+  const totalGroupsNeeded = boardMembers.length; 
+  
+ 
   // Create four groups with one Board member each
-  for (let i = 0; i < boardMembers.length; i++) {
+  for (let i = 0; i < totalGroupsNeeded; i++) {
     groups.push([random_name(boardMembers)]);
   }
 
+   console.log("Group members", groups);
+  
   // Distribute regular members until none remain
   while (regularMembers.length > 0) {
     for (const group of groups) {
@@ -59,6 +66,8 @@ function create_groups() {
       group.push(random_name(regularMembers));
     }
   }
+
+  console.log("Final groups", groups);
 
   return groups;
 }

@@ -20,6 +20,7 @@ const App = () => {
       {/* <BoardMeetings /> */}
       {/* <AgendaSuggestion /> */}
       <Schedule />
+    
     </div>
   );
 };
