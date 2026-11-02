@@ -25,6 +25,9 @@ function BoardMeetings() {
   const [showForm, setShowForm] = useState(false);
   const [editingMeeting, setEditingMeeting] = useState(null);
 
+  const now = new Date();
+  const currentYear = now.getFullYear();
+
   const selectedMeeting = meetings.find(
     (meeting) =>
       meeting.year === selectedYear && meeting.month === selectedMonth,
@@ -77,7 +80,13 @@ function BoardMeetings() {
             setShowForm(false);
           }}
         >
-          {[2026, 2027, 2028, 2029, 2030].map((year) => (
+          {[
+            currentYear,
+            currentYear + 1,
+            currentYear + 2,
+            currentYear + 3,
+            currentYear + 4,
+          ].map((year) => (
             <option key={year} value={year}>
               {year}
             </option>

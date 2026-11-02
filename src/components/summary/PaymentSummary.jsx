@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const paymentMonths = [
+const paymentMonths = [  
   "Jan",
   "Fev",
   "Mar",

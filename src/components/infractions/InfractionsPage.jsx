@@ -3,4 +3,4 @@ const InfractionsPage = ({ infractionRows, setInfractionRows }) => {
   return <Infractions rows={infractionRows} setRows={setInfractionRows} />;
 };
 
-export default InfractionsPage;
+export default InfractionsPage; 
