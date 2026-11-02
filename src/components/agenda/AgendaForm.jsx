@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const AgendaForm = ({ post, onSave, onCancel }) => {
   const [name, setName] = useState(post?.name || "");
-  const [title, setTitle] = useState(post?.title || "");
+  const [title, setTitle] = useState(post?.title || ""); 
   const [description, setDescription] = useState(post?.description || "");
   const [datePosted, setDatePosted] = useState(
     post?.datePosted || new Date().toLocaleDateString("en-CA"),

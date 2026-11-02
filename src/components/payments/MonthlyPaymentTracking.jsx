@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./payment.css";
 const months = [
   "Jan",
   "Fev",
@@ -48,6 +48,7 @@ const MonthlyPaymentTracking = ({ monthlyValues, setMonthlyValues }) => {
 
   return (
     <div>
+    <h2>Monthly Payment Tracking</h2>
       {/* Input search bar */}
       <input
         type="text"

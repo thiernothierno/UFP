@@ -3,6 +3,7 @@ import members from "../data/List-of-Members";
 import InfractionsPage from "../components/infractions/InfractionsPage";
 import PaymentSummaryPage from "../components/summary/PaymentSummaryPage";
 import PaymentTrackingPage from "../components/payments/PaymentTrackingPage";
+import "./paymentStatus.css";
 
 //- Managing the selected year.
 // - Holding payment and infraction data for each year.
@@ -119,8 +120,8 @@ const PaymentStatus = () => {
   };
 
   return (
-    <div>
-      <h2>Member Records</h2>
+    <div className="payment-status-container"> 
+      <h2 className="payment-title">Member Records</h2>
 
       {/* Year selector */}
       <label htmlFor="year">Select Year: </label>

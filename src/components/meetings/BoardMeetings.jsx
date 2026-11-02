@@ -67,7 +67,7 @@ function BoardMeetings() {
 
   return (
     <div className="meetings-container">
-      <h2>Board Meeting Details</h2>
+      <h2 className="meetings-title">Board Meeting Details</h2>
 
       <div className="meetings-year">
         <label>Select Year:</label>

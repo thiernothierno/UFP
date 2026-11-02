@@ -23,3 +23,12 @@
   background-color: #006064;
   color: white;
 }
+
+/* search bar  */
+.search-bar {
+  padding: 10px;
+  background-color: bisque;
+  color: black;
+  width: 250px;
+  border: 1px solid #ccc;
+}

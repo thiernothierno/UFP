@@ -110,7 +110,7 @@ const Rules = () => {
   }
 
   return (
-    <div className="rules-container">
+    <div className="rules-container">. 
       <h2>Rules & Regulations</h2>
       <p>Select a category to view its rules.</p>
 

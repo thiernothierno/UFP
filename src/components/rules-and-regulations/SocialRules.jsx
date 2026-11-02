@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RuleForm from "./RuleForm";
 
+
 const SocialRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
   const [showForm, setShowForm] = useState(false);
   const [editingRule, setEditingRule] = useState(null);
@@ -38,11 +39,12 @@ const SocialRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
         Back to Rules
       </button>
 
-      <h2>Social Rules</h2>
+      <h2 className="rules-title">Social Rules</h2>
 
       {!showForm && (
         <button onClick={() => setShowForm(true)} className="add-rules">
-          Add Social Rule
+           Add Rule
+        
         </button>
       )}
 
@@ -52,6 +54,7 @@ const SocialRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
           rule={editingRule}
           onSave={handleSave}
           onCancel={handleCancel}
+        
         />
       )}
 
