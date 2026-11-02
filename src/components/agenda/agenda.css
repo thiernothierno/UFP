@@ -1,8 +1,24 @@
-.agenda-container {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20px;
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
+.agenda-container {
+  text-align: center;
+
+}
+
+.agenda-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers components horizontally */
+  justify-content: center; /* Centers components vertically */
+  text-align: center; /* Centers the inline text strings */
+  margin-bottom: 2.5rem; /* Creates a clean gap above the form or cards grid */
+}
+
 
 .add-agenda-button {
   padding: 15px;
@@ -15,12 +31,18 @@
 }
 
 .agenda-form {
+  width: 100%;
+  /* 1. Forces the form to stretch across flex parents */
   max-width: 600px;
-  margin: 20px 0;
+  /* 2. Caps it at exactly 600px */
+  margin: 20px auto;
+  /* 3. Uses 'auto' to keep the box centered on the page */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  box-sizing: border-box;
+  /* 4. Ensures padding doesn't distort the 600px width */
 }
 
 .agenda-form label {

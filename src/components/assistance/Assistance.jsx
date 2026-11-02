@@ -42,13 +42,13 @@ const Assistance = () => {
 
   // Delete a post
   const handleDelete = (id) => {
-    if (
-      window.confirm("Are you sure you want to delete this assistance post?")
-    ) {
+    // if (
+    //   window.confirm("Are you sure you want to delete this assistance post?")
+    // ) {
       setPosts((previousPosts) =>
         previousPosts.filter((post) => post.id !== id),
       );
-    }
+    // }
   };
 
   // Cancel form
@@ -59,6 +59,7 @@ const Assistance = () => {
 
   return (
     <div className="assistance-container">
+    <header className="assistance-header">
       <h2>Member Assistance</h2>
       <p>View and post assistance requests.</p>
 
@@ -70,7 +71,7 @@ const Assistance = () => {
           Post Your Inquiry
         </button>
       )}
-
+      </header>
       {showForm && (
         <AssistanceForm
           post={editingPost}

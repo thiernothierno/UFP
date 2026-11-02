@@ -1,3 +1,10 @@
+
+.schedule-title {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
 .schedule-container {
   width: 100%;
   max-width: 1200px;

@@ -42,7 +42,7 @@ const RegulationRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
 
       {!showForm && (
         <button onClick={() => setShowForm(true)} className="add-rules">
-          Add Regulation
+          Add Rule
         </button>
       )}
 

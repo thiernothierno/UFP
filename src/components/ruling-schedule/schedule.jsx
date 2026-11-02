@@ -27,7 +27,6 @@ const regular_member_NY = [
   "Petit",
   "Tara",
   "Cris",
-  "Ben",
 ];
 
 // Randomly select a name and remove it from the original list
@@ -45,13 +44,12 @@ function create_groups() {
   const regularMembers = [...regular_member_NY];
 
   const groups = [];
+  const totalGroupsNeeded = boardMembers.length;
 
   // Create four groups with one Board member each
-  for (let i = 0; i < boardMembers.length; i++) {
+  for (let i = 0; i < totalGroupsNeeded; i++) {
     groups.push([random_name(boardMembers)]);
   }
-
-  console.log("groups board", groups);
 
   // Distribute regular members until none remain
   while (regularMembers.length > 0) {
@@ -64,8 +62,6 @@ function create_groups() {
     }
   }
 
-  console.log(groups);
-
   return groups;
 }
 
@@ -76,7 +72,7 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
-      <h2>Active Member Groups</h2>
+      <h2 className="schedule-title">Active Member Groups</h2>
 
       {/* We will add the five-column table here in Step 2 */}
 
@@ -110,7 +106,7 @@ const Schedule = () => {
               ))}
             </div>
 
-            <div className="group-footer">Total members: {group.length}</div>
+            {/*<div className="group-footer">Total members: {group.length}</div>*/}
           </div>
         ))}
       </div>

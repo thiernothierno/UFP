@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./summary.css";
 
 const paymentMonths = [  
   "Jan",

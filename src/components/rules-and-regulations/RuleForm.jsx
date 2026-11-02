@@ -25,6 +25,7 @@ const RuleForm = ({ category, rule, onSave, onCancel }) => {
         type="text"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
+        placeholder="Enter rule title"
         required
       />
 
@@ -32,6 +33,7 @@ const RuleForm = ({ category, rule, onSave, onCancel }) => {
       <textarea
         value={description}
         onChange={(event) => setDescription(event.target.value)}
+        placeholder="Describe the rule"
         required
         rows="5"
       />

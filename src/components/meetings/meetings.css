@@ -1,3 +1,9 @@
+.meetings-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
 .meetings-container {
   width: 100%;
   max-width: 1200px;
@@ -153,9 +159,24 @@
   font-weight: bold;
   color: #333;
 }
-
+/* 
 @media (max-width: 600px) {
   .months-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+} */
+/* For Tablets and small laptops */
+@media (max-width: 1000px) {
+  .months-grid {
+    grid-template-columns: repeat(2, minmax(0, 280px));
+    /* 2 columns */
+  }
+}
+
+/* For Mobile Phones */
+@media (max-width: 600px) {
+  .months-grid {
+    grid-template-columns: minmax(0, 280px);
+    /* 1 column */
   }
 }
