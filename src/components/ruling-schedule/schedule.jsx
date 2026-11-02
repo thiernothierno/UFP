@@ -40,6 +40,8 @@ function random_name(data) {
 
 function create_groups() {
   const boardMembers = [...board_member];
+  console.log("board members", boardMembers);
+
   const regularMembers = [...regular_member_NY];
 
   const groups = [];
@@ -48,6 +50,8 @@ function create_groups() {
   for (let i = 0; i < boardMembers.length; i++) {
     groups.push([random_name(boardMembers)]);
   }
+
+  console.log("groups board", groups);
 
   // Distribute regular members until none remain
   while (regularMembers.length > 0) {
@@ -60,11 +64,14 @@ function create_groups() {
     }
   }
 
+  console.log(groups);
+
   return groups;
 }
 
 const Schedule = () => {
   const [groups] = useState(() => create_groups());
+
   const [activeGroup, setActiveGroup] = useState(null);
 
   return (
