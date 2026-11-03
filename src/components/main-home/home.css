@@ -1,64 +1,195 @@
-body {
-  margin: 20px;
+h1 {
+  color: blue;
+}
+
+/* Main header */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: white;
+}
+
+/* Logo and heading */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand h1 {
+  position: relative;
+  left: 15px;
+  top: -30px;
+}
+
+/* Navigation bar */
+.home-nav-bar {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+/* Remove default list styling */
+.home-nav-bar ul {
+  list-style: none;
+  margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Center navigation */
+.nav-center {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.nav-center {
+  transform: translateX(-130px);
+}
+
+/* Right navigation */
+.nav-right {
+  grid-column: 3;
+  justify-self: end;
+}
+
+.nav-right {
+  transform: translateX(-70px);
+}
+
+.donate {
+  background-color: #04aa6d;
+  border-radius: 30px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+/* Navigation links */
+.home-nav-bar li a {
+  display: block;
+  /* color: cornflowerblue; */
+  text-align: center;
+  padding: 20px 15px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.nav-center li a {
+  color: cornflowerblue;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: bisque;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black !important;
+  padding: 12px 16px !important;
+  text-align: left !important;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+  color: cornflowerblue !important;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 h2,
 p {
   margin: 10px;
 }
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #38444d;
-}
-
-li {
-  float: left;
-}
-
-li a,
-.dropbtn {
-  display: inline-block;
-  color: white;
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: cornflowerblue;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
 }
+@media screen and (max-width: 768px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 10px;
+  }
 
-li a:hover,
-.dropdown:hover .dropbtn {
-  background-color: red;
-}
+  /* Logo and name on the left */
+  .brand {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-li.dropdown {
-  display: inline-block;
-}
+  .brand img {
+    width: 50px;
+    height: 50px;
+  }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: bisque;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
+  .brand h1 {
+    font-size: 18px;
+    position: static;
+    margin: 0;
+  }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
+  /* Navigation */
+  .home-nav-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin-top: 10px;
+  }
 
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
+  .nav-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+  }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+  .nav-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+  }
+
+  .home-nav-bar li {
+    float: none;
+  }
+
+  .home-nav-bar li a {
+    width: auto;
+    padding: 12px 10px;
+    font-size: 13px;
+  }
 }
