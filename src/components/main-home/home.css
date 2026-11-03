@@ -1,5 +1,5 @@
 h1 {
-  color: blue;
+  color: dodgerblue;
 }
 
 /* Main header */
@@ -48,7 +48,7 @@ h1 {
 }
 
 .nav-center {
-  transform: translateX(-130px);
+  transform: translateX(-140px);
 }
 
 /* Right navigation */
@@ -62,13 +62,13 @@ h1 {
 }
 
 .donate {
-  background-color: #04aa6d;
+  background-color: darkgreen;
   border-radius: 30px;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -77,13 +77,13 @@ h1 {
   display: block;
   /* color: cornflowerblue; */
   text-align: center;
-  padding: 20px 15px;
+  padding: 18px 15px;
   text-decoration: none;
   font-size: 18px;
 }
 
 .nav-center li a {
-  color: cornflowerblue;
+  color: dodgerblue;
 }
 
 /* Dropdown */
@@ -110,7 +110,7 @@ h1 {
 
 .dropdown-content a:hover {
   background-color: white;
-  color: cornflowerblue !important;
+  color: darkgreen;
 }
 
 .dropdown:hover .dropdown-content {
@@ -121,14 +121,46 @@ h2,
 p {
   margin: 10px;
 }
+
+/* Entire page */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Member button container */
+.member-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding: 20px;
+}
+
+/* Member Login button */
+.member-login {
+  background-color: darkgreen;
+  border-radius: 30px;
+  color: white;
+  font-size: 15px;
+  padding: 15px 25px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Footer */
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-  color: cornflowerblue;
+  background-color: #333;
+  color: white;
   text-align: center;
+  padding: 15px;
 }
 @media screen and (max-width: 768px) {
   .site-header {
