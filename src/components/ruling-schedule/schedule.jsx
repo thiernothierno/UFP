@@ -26,7 +26,6 @@ const regular_member_NY = [
   "Ronaldo",
   "Petit",
   "Tara",
-  "Cris",
 ];
 
 // Randomly select a name and remove it from the original list
