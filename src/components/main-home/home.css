@@ -141,7 +141,7 @@ p {
   display: flex;
   justify-content: flex-end;
   margin-top: auto;
-  padding: 20px;
+  padding: 30px;
 }
 
 /* Member Login button */
@@ -153,6 +153,7 @@ p {
   padding: 15px 25px;
   border: none;
   cursor: pointer;
+  transform: translateX(-20px);
 }
 
 /* Footer */

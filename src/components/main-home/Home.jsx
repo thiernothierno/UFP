@@ -1,5 +1,5 @@
 import "./home.css";
-
+import Events from "../events/Events";
 const Home = () => {
   const now = new Date();
   const year = now.getFullYear();
@@ -28,7 +28,7 @@ const Home = () => {
               </a>
               <div className="dropdown-content">
                 <a href="#past-event">Past Events</a>
-                <a href="#upcoming-event">Upcoming Events</a>
+                <a href="#upcoming-event">Upcoming Event</a>
               </div>
             </li>
 
@@ -50,7 +50,7 @@ const Home = () => {
       {/* Main content */}
       <main className="main-content">
         {/* Your website content goes here */}
-
+        <Events />
         <div className="member-section">
           <button className="member-login">Member Login</button>
         </div>

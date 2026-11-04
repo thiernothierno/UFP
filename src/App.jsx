@@ -8,11 +8,19 @@ import BoardMeetings from "./components/meetings/BoardMeetings";
 import AgendaSuggestion from "./components/agenda/AgendaSuggestion";
 import Schedule from "./components/ruling-schedule/schedule";
 import Home from "./components/main-home/Home";
+import MemberHome from "./components/member-home-page/MemberHome";
 
 const App = () => {
   return (
     <div>
-      <Home />
+      {/* <Home /> */}
+      <MemberHome />
+      {/* <PaymentStatus />
+      <AgendaSuggestion />
+      <Schedule />
+      <BoardMeetings />
+      <Assistance />
+      <Rules /> */}
     </div>
   );
 };
