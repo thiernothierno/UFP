@@ -1,5 +1,5 @@
 import "./home.css";
-import Events from "../events/Events";
+import { Link } from "react-router-dom";
 const Home = () => {
   const now = new Date();
   const year = now.getFullYear();
@@ -16,32 +16,32 @@ const Home = () => {
         <nav className="home-nav-bar">
           <ul className="nav-center">
             <li>
-              <a href="#">HOME</a>
+              <Link to="/">HOME</Link>
             </li>
             <li>
-              <a href="#about">ABOUT</a>
+              <Link to="/about">ABOUT</Link>
             </li>
 
             <li className="dropdown">
-              <a href="#" className="dropbtn">
+              <Link to="#" className="dropbtn">
                 EVENTS
-              </a>
+              </Link>
               <div className="dropdown-content">
-                <a href="#past-event">Past Events</a>
-                <a href="#upcoming-event">Upcoming Event</a>
+                <Link to="/past-event">Past</Link>
+                <Link to="/upcoming-event">Upcoming</Link>
               </div>
             </li>
 
             <li>
-              <a href="#contact">CONTACT</a>
+              <Link to="/contact">CONTACT</Link>
             </li>
           </ul>
 
           <ul className="nav-right">
             <li>
-              <a href="#" className="donate">
+              <Link to="/donate" className="donate">
                 DONATE
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -50,7 +50,21 @@ const Home = () => {
       {/* Main content */}
       <main className="main-content">
         {/* Your website content goes here */}
-        <Events />
+        <div className="image-marquee">
+          <div className="image-track">
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+            <img src="/org1" alt="" />
+          </div>
+        </div>
+
         <div className="member-section">
           <button className="member-login">Member Login</button>
         </div>

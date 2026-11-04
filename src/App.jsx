@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PaymentStatus from "./layout/PaymentStatus";
-
 import "./App.css";
 import Rules from "./components/rules-and-regulations/Rules";
 import Assistance from "./components/assistance/Assistance";
@@ -8,20 +8,24 @@ import BoardMeetings from "./components/meetings/BoardMeetings";
 import AgendaSuggestion from "./components/agenda/AgendaSuggestion";
 import Schedule from "./components/ruling-schedule/schedule";
 import Home from "./components/main-home/Home";
-import MemberHome from "./components/member-home-page/MemberHome";
-
+import WelcomePage from "./components/infos/WelcomePage";
+import About from "./components/infos/About";
+import PastEvents from "./components/infos/PastEvents";
+import UpcomingEvents from "./components/infos/UpcomingEvents";
+import Contact from "./components/infos/Contact";
+import Donate from "./components/infos/Donate";
 const App = () => {
   return (
-    <div>
-      {/* <Home /> */}
-      <MemberHome />
-      {/* <PaymentStatus />
-      <AgendaSuggestion />
-      <Schedule />
-      <BoardMeetings />
-      <Assistance />
-      <Rules /> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/past-event" element={<PastEvents />} />
+        <Route path="/upcoming-event" element={<UpcomingEvents />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/donate" element={<Donate />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

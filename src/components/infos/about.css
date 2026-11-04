@@ -1,0 +1,9 @@
+/* @media (max-width: 768px) {
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+} */
+
+.main-content h2 {
+  color: red;
+}
