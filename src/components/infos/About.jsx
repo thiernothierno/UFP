@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import "./about.css";
 const About = () => {
   const now = new Date();
   const year = now.getFullYear();
@@ -50,37 +50,45 @@ const About = () => {
       {/* Main content */}
       <main className="main-content">
         {/* Your website content goes here */}
-        <div className="about-container">
-          <h2>Who We Are</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-            velit laboriosam eum temporibus, autem, excepturi animi dolor
-            quibusdam culpa molestias, impedit natus suscipit consectetur iure
-            assumenda! Aperiam dolorem quidem corporis. Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Inventore deserunt aperiam
-            asperiores. Eius in accusantium omnis nobis deleniti? Alias neque
-            illum ut libero nostrum illo suscipit fugiat aut dolor nulla?
-          </p>
-          <h2>What We Do</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-            velit laboriosam eum temporibus, autem, excepturi animi dolor
-            quibusdam culpa molestias, impedit natus suscipit consectetur iure
-            assumenda! Aperiam dolorem quidem corporis. Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Inventore deserunt aperiam
-            asperiores. Eius in accusantium omnis nobis deleniti? Alias neque
-            illum ut libero nostrum illo suscipit fugiat aut dolor nulla?
-          </p>
-          <h2>Our mission</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-            velit laboriosam eum temporibus, autem, excepturi animi dolor
-            quibusdam culpa molestias, impedit natus suscipit consectetur iure
-            assumenda! Aperiam dolorem quidem corporis. Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Inventore deserunt aperiam
-            asperiores. Eius in accusantium omnis nobis deleniti? Alias neque
-            illum ut libero nostrum illo suscipit fugiat aut dolor nulla?
-          </p>
+        <div class="about-grid">
+          <div class="about-item">
+            <h2>Who We Are</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
+              velit laboriosam eum temporibus, autem, excepturi animi dolor
+              quibusdam culpa molestias, impedit natus suscipit consectetur iure
+              assumenda! Aperiam dolorem quidem corporis. Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Inventore deserunt aperiam
+              asperiores. Eius in accusantium omnis nobis deleniti? Alias neque
+              illum ut libero nostrum illo suscipit fugiat aut dolor nulla?
+            </p>
+          </div>
+
+          <div class="about-item">
+            <h2>What We Do</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
+              velit laboriosam eum temporibus, autem, excepturi animi dolor
+              quibusdam culpa molestias, impedit natus suscipit consectetur iure
+              assumenda! Aperiam dolorem quidem corporis. Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Inventore deserunt aperiam
+              asperiores. Eius in accusantium omnis nobis deleniti? Alias neque
+              illum ut libero nostrum illo suscipit fugiat aut dolor nulla?
+            </p>
+          </div>
+
+          <div class="about-item">
+            <h2>Our Mission</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
+              velit laboriosam eum temporibus, autem, excepturi animi dolor
+              quibusdam culpa molestias, impedit natus suscipit consectetur iure
+              assumenda! Aperiam dolorem quidem corporis. Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Inventore deserunt aperiam
+              asperiores. Eius in accusantium omnis nobis deleniti? Alias neque
+              illum ut libero nostrum illo suscipit fugiat aut dolor nulla?
+            </p>
+          </div>
         </div>
       </main>
 
