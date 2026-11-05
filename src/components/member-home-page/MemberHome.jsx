@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import SideBar from "./SideBar";
 const MemberHome = () => {
   const now = new Date();
   const year = now.getFullYear();
@@ -48,9 +48,11 @@ const MemberHome = () => {
       </div>
 
       {/* Main content */}
-      <main className="main-content">
-        {/* Your website content goes here */}
-        <h1>This is the member home page</h1>
+      <main className="main-content member-main">
+        <SideBar />
+        <section className="member-content">
+          <h2>Member Home</h2>
+        </section>
       </main>
 
       {/* Footer */}
