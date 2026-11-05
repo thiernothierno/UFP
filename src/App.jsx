@@ -14,6 +14,8 @@ import PastEvents from "./components/infos/PastEvents";
 import UpcomingEvents from "./components/infos/UpcomingEvents";
 import Contact from "./components/infos/Contact";
 import Donate from "./components/infos/Donate";
+import MemberLoginPage from "./components/member-home-page/MemberLoginPage";
+import MemberHome from "./components/member-home-page/MemberHome";
 const App = () => {
   return (
     <BrowserRouter>
@@ -24,6 +26,8 @@ const App = () => {
         <Route path="/upcoming-event" element={<UpcomingEvents />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
+        <Route path="/member-login" element={<MemberLoginPage />} />
+        <Route path="/user-login" element={<MemberHome />} />
       </Routes>
     </BrowserRouter>
   );

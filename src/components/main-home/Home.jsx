@@ -1,5 +1,6 @@
 import "./home.css";
 import { Link } from "react-router-dom";
+
 const Home = () => {
   const now = new Date();
   const year = now.getFullYear();
@@ -9,8 +10,8 @@ const Home = () => {
       {/* Header */}
       <div className="site-header">
         <div className="brand">
-          <img src="/logo.jpg" alt="logo" width="100" height="100" />
-          <h1>Union For Progress</h1>
+          <img src="/ufp-logo.jpg" alt="logo" width="100" height="100" />
+          <h1>UNION FOR PROGRESS</h1>
         </div>
 
         <nav className="home-nav-bar">
@@ -66,7 +67,9 @@ const Home = () => {
         </div>
 
         <div className="member-section">
-          <button className="member-login">Member Login</button>
+          <Link to="/member-login" className="member-login">
+            Member Login
+          </Link>
         </div>
       </main>
 

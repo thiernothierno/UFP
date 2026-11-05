@@ -9,8 +9,8 @@ const About = () => {
       {/* Header */}
       <div className="site-header">
         <div className="brand">
-          <img src="/logo.jpg" alt="logo" width="100" height="100" />
-          <h1>Union For Progress</h1>
+          <img src="/ufp-logo.jpg" alt="logo" width="100" height="100" />
+          <h1>UNION FOR PROGRESS</h1>
         </div>
 
         <nav className="home-nav-bar">

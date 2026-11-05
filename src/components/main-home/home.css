@@ -11,6 +11,10 @@ h1 {
   background-color: white;
 }
 
+.site-header img {
+  border-radius: 50%;
+}
+
 /* Logo and heading */
 .brand {
   display: flex;
@@ -20,8 +24,9 @@ h1 {
 
 .brand h1 {
   position: relative;
-  left: 15px;
+  left: 7px;
   top: -30px;
+  opacity: 2;
 }
 
 /* Navigation bar */
@@ -58,7 +63,7 @@ h1 {
 }
 
 .nav-right {
-  transform: translateX(-50px);
+  transform: translateX(-30px);
 }
 
 .donate {
@@ -153,7 +158,8 @@ p {
   padding: 15px 25px;
   border: none;
   cursor: pointer;
-  transform: translateX(-20px);
+  transform: translateX(50px);
+  text-decoration: none;
 }
 
 /* Footer */
