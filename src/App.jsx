@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PaymentStatus from "./layout/PaymentStatus";
 import "./App.css";
@@ -8,7 +7,6 @@ import BoardMeetings from "./components/meetings/BoardMeetings";
 import AgendaSuggestion from "./components/agenda/AgendaSuggestion";
 import Schedule from "./components/ruling-schedule/schedule";
 import Home from "./components/main-home/Home";
-import WelcomePage from "./components/infos/WelcomePage";
 import About from "./components/infos/About";
 import PastEvents from "./components/infos/PastEvents";
 import UpcomingEvents from "./components/infos/UpcomingEvents";
@@ -27,7 +25,15 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/member-login" element={<MemberLoginPage />} />
-        <Route path="/user-login" element={<MemberHome />} />
+        <Route path="/user-login" element={<MemberHome />}>
+          <Route index element={<h2>Member Home</h2>} />
+          <Route path="records" element={<PaymentStatus />} />
+          <Route path="rules" element={<Rules />} />
+          <Route path="ruling-schedule" element={<Schedule />} />
+          <Route path="meetings" element={<BoardMeetings />} />
+          <Route path="agenda" element={<AgendaSuggestion />} />
+          <Route path="assistance" element={<Assistance />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

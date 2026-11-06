@@ -1,56 +1,52 @@
-
 .add-rules,
 .back-to-rules {
   padding: 15px;
   border-radius: 10px;
-  background-color: bisque; 
+  background-color: bisque;
   color: black;
   font-size: 15px;
   text-align: center;
   cursor: pointer;
 }
 
-
-.back-to-rules{
-  margin-top: 20px;
-  position: absolute;
-  top: 110px;
-  left: 30px;
-  
+.back-to-rules {
+  margin: 0;
 }
+
+.add-rules {
+  margin: 0;
+}
+
+.rules-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
 .add-rules:hover,
 .back-to-rules:hover {
   background-color: #666;
   color: white;
 }
 
-.social-rules-container, .regulation-rules-container {
-  position: relative;
-  padding-top: 60px;
-  padding-left: 30px; 
-  
+.social-rules-container,
+.regulation-rules-container {
+  width: 100%;
+  min-width: 0;
 }
 
-
-.rules-container, .social-rules-container, .regulation-rules-container {
+.rules-container,
+.social-rules-container,
+.regulation-rules-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Centers components horizontally */
-  justify-content: center;
-  /* Centers components vertically */
-display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Centers components horizontally */
-  justify-content: center;
-  /* Centers components vertically */
   text-align: center;
-  /* Centers the inline text strings */
   margin-bottom: 2.5rem;
-  /* Creates a clean gap above the form or cards grid */
 }
-
 
 .rules-categories {
   display: flex;
@@ -206,7 +202,7 @@ display: flex;
 }
 
 /* For Tablets and small laptops */
-@media (max-width: 1000px) {
+@media (max-width: 700px) {
   .rules-grid {
     grid-template-columns: repeat(2, minmax(0, 280px));
     /* 2 columns */
@@ -214,7 +210,7 @@ display: flex;
 }
 
 /* For Mobile Phones */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .rules-grid {
     grid-template-columns: minmax(0, 280px);
     /* 1 column */

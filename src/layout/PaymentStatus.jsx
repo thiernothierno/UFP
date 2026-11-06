@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import members from "../data/List-of-Members";
 import InfractionsPage from "../components/infractions/InfractionsPage";
 import PaymentSummaryPage from "../components/summary/PaymentSummaryPage";
@@ -43,6 +44,7 @@ const infractionMonths = [
 ];
 
 const categories = ["MSG", "Late", "Absence"];
+const validPages = ["payments", "infractions", "summary"];
 
 // Creates empty payment and infraction records for a year
 const createYearData = () => ({
@@ -62,6 +64,11 @@ const createYearData = () => ({
 });
 
 const PaymentStatus = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedPage = searchParams.get("view");
+  const activePage = validPages.includes(requestedPage)
+    ? requestedPage
+    : "payments";
   const date = new Date();
   const year = date.getFullYear();
   // Selected year
@@ -73,8 +80,11 @@ const PaymentStatus = () => {
     2027: createYearData(),
   }));
 
-  // Which page is currently displayed
-  const [activePage, setActivePage] = useState("payments");
+  const setActivePage = (page) => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("view", page);
+    setSearchParams(nextParams);
+  };
 
   // Get the records for the selected year
   const currentYearData = yearlyData[selectedYear];

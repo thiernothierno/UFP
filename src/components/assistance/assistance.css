@@ -11,6 +11,10 @@
   /* Creates a clean gap above the form or cards grid */
 }
 
+.assistance-header p {
+  margin-top: 20px;
+}
+
 .assistance-container {
   text-align: center;
 }
@@ -23,17 +27,18 @@
   font-size: 15px;
   text-align: center;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .assistance-form {
-  width: 100%;/* 1. Forces the form to stretch across flex parents */
-  max-width: 600px;/* 2. Caps it at exactly 600px */
-  margin: 20px auto;/* 3. Uses 'auto' to keep the box centered on the page */
+  width: 100%; /* 1. Forces the form to stretch across flex parents */
+  max-width: 600px; /* 2. Caps it at exactly 600px */
+  margin: 20px auto; /* 3. Uses 'auto' to keep the box centered on the page */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
-  box-sizing: border-box;/* 4. Ensures padding doesn't distort the 600px width */
+  box-sizing: border-box; /* 4. Ensures padding doesn't distort the 600px width */
 }
 
 .assistance-form label {
@@ -145,7 +150,7 @@
   line-height: 1.4;
 }
 /* For Tablets and small laptops */
-@media (max-width: 1000px) {
+@media (max-width: 700px) {
   .rules-grid {
     grid-template-columns: repeat(2, minmax(0, 280px));
     /* 2 columns */
@@ -153,7 +158,7 @@
 }
 
 /* For Mobile Phones */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .rules-grid {
     grid-template-columns: minmax(0, 280px);
     /* 1 column */

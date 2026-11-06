@@ -35,18 +35,18 @@ const SocialRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
 
   return (
     <div className="social-rules-container">
-      <button onClick={onBack} className="back-to-rules">
-        Back to Rules
-      </button>
+      <div className="rules-toolbar">
+        <button onClick={onBack} className="back-to-rules">
+          Back to Rules
+        </button>
+        {!showForm && (
+          <button onClick={() => setShowForm(true)} className="add-rules">
+            Add Rule
+          </button>
+        )}
+      </div>
 
       <h2 className="rules-title">Social Rules</h2>
-
-      {!showForm && (
-        <button onClick={() => setShowForm(true)} className="add-rules">
-           Add Rule
-        
-        </button>
-      )}
 
       {showForm && (
         <RuleForm
@@ -54,7 +54,6 @@ const SocialRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
           rule={editingRule}
           onSave={handleSave}
           onCancel={handleCancel}
-        
         />
       )}
 

@@ -34,17 +34,18 @@ const RegulationRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
 
   return (
     <div className="regulation-rules-container">
-      <button onClick={onBack} className="back-to-rules">
-        Back to Rules
-      </button>
+      <div className="rules-toolbar">
+        <button onClick={onBack} className="back-to-rules">
+          Back to Rules
+        </button>
+        {!showForm && (
+          <button onClick={() => setShowForm(true)} className="add-rules">
+            Add Rule
+          </button>
+        )}
+      </div>
 
       <h2>Regulations</h2>
-
-      {!showForm && (
-        <button onClick={() => setShowForm(true)} className="add-rules">
-          Add Rule
-        </button>
-      )}
 
       {showForm && (
         <RuleForm
