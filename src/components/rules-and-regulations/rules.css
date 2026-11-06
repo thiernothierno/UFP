@@ -56,7 +56,7 @@
 
 .rules-category {
   padding: 20px;
-  min-width: 180px;
+  min-width: 150px;
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -126,6 +126,18 @@
   display: flex;
   gap: 10px;
   margin-top: 15px;
+}
+
+.rule-form-buttons button {
+  padding: 8px 14px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: dodgerblue;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
 }
 
 .rule-form button,
@@ -199,6 +211,11 @@
   padding: 4px 8px;
   font-size: 11px;
   cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 10px;
 }
 
 /* For Tablets and small laptops */

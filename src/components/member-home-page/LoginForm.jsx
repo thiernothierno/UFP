@@ -38,7 +38,7 @@ const LoginForm = () => {
         <Link to="/user-login" className="login-form-buttons">
           Login
         </Link>
-        <Link to="/user-login" className="login-form-buttons">
+        <Link to="/reset-password" className="login-form-buttons">
           Reset Password
         </Link>
       </div>

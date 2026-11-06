@@ -14,6 +14,7 @@ import Contact from "./components/infos/Contact";
 import Donate from "./components/infos/Donate";
 import MemberLoginPage from "./components/member-home-page/MemberLoginPage";
 import MemberHome from "./components/member-home-page/MemberHome";
+import ResetPassword from "./components/member-home-page/ResetPassword";
 const App = () => {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/member-login" element={<MemberLoginPage />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/user-login" element={<MemberHome />}>
           <Route index element={<h2>Member Home</h2>} />
           <Route path="records" element={<PaymentStatus />} />
