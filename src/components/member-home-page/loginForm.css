@@ -22,18 +22,27 @@ body {
 }
 
 .login-form input,
-.login-form-buttons {
+.login-buttons {
   width: 100%;
+}
+
+.login-form input,
+.login-form-buttons {
   min-height: 46px;
   padding: 10px 12px;
   font: inherit;
 }
 
+.login-buttons {
+  display: flex;
+  gap: 10px;
+}
+
 .login-form-buttons {
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
-  width: 100%;
   background-color: darkgreen;
   text-decoration: none;
   color: white;

@@ -34,9 +34,12 @@ const LoginForm = () => {
         required
       />
 
-      <div>
+      <div className="login-buttons">
         <Link to="/user-login" className="login-form-buttons">
           Login
+        </Link>
+        <Link to="/user-login" className="login-form-buttons">
+          Reset Password
         </Link>
       </div>
     </form>

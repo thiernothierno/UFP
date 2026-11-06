@@ -68,7 +68,7 @@
 }
 
 .meeting-bullet-list {
-  list-style: none !important;
+  list-style: none;
   padding: 0;
   margin: 10px 0;
 }
@@ -137,6 +137,13 @@
   margin-top: 10px;
 }
 
+.meeting-form-actions button {
+  background-color: dodgerblue;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+}
 .meeting-actions {
   display: flex;
   gap: 8px;
@@ -144,8 +151,12 @@
 }
 
 .meeting-actions button {
-  padding: 6px 12px;
+  background-color: dodgerblue;
   cursor: pointer;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
 }
 
 .detail-input {
