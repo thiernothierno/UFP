@@ -15,6 +15,7 @@ import Donate from "./components/infos/Donate";
 import MemberLoginPage from "./components/member-home-page/MemberLoginPage";
 import MemberHome from "./components/member-home-page/MemberHome";
 import ResetPassword from "./components/member-home-page/ResetPassword";
+import MeetingSummary from "./components/meeting-summary/MeetingSummary";
 const App = () => {
   return (
     <BrowserRouter>
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="meetings" element={<BoardMeetings />} />
           <Route path="agenda" element={<AgendaSuggestion />} />
           <Route path="assistance" element={<Assistance />} />
+          <Route path="meeting-summary" element={<MeetingSummary />} />
         </Route>
       </Routes>
     </BrowserRouter>

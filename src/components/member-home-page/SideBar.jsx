@@ -27,12 +27,12 @@ const navigationItems = [
     ],
   },
   {
+    label: "Meeting Summary",
+    links: [{ label: "Meeting-Summary", to: "/user-login/meeting-summary" }],
+  },
+  {
     label: "Account",
-    links: [
-      { label: "Profile" },
-      { label: "Settings" },
-      { label: "Sign out" },
-    ],
+    links: [{ label: "Profile" }, { label: "Settings" }, { label: "Sign out" }],
   },
 ];
 
@@ -83,7 +83,11 @@ const SideBar = () => {
               >
                 {label}
               </button>
-              <ul className="member-submenu" id={submenuId} hidden={!isExpanded}>
+              <ul
+                className="member-submenu"
+                id={submenuId}
+                hidden={!isExpanded}
+              >
                 {links.map(({ label: linkLabel, to }) => {
                   const [path, query = ""] = (to ?? "").split("?");
                   const isActive =
