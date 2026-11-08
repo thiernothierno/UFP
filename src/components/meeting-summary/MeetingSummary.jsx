@@ -116,7 +116,7 @@ function MeetingSummary() {
       {selectedMonth !== null && (
         <div className="meeting-details">
           <h3>
-            {months[selectedMonth - 1]} {selectedYear} Summary
+            {months[selectedMonth - 1]} {selectedYear} Meeting's Summary
           </h3>
 
           {selectedMeeting ? (
@@ -133,7 +133,7 @@ function MeetingSummary() {
                 <strong>Location:</strong> {selectedMeeting.location}
               </p> */}
 
-              <h4>Meeting Summary:</h4>
+              {/* <h4>Meeting Summary:</h4> */}
 
               <ul className="meeting-bullet-list">
                 {selectedMeeting.details.map((detail, index) => (
