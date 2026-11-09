@@ -1,6 +1,8 @@
 import { useState } from "react";
 import initialMeetings from "../../data/meetings";
 import MeetingSummaryForm from "./MeetingSummaryForm";
+import { can } from "../../data/userPermission";
+import { useMember } from "../member-home-page/MemberContext";
 import "./meetingSummary.css";
 
 const months = [
@@ -19,6 +21,9 @@ const months = [
 ];
 
 function MeetingSummary() {
+  const member = useMember();
+  const canAdd = can(member.role, "add", "meeting-summary");
+  const canEdit = can(member.role, "edit", "meeting-summary");
   const [meetings, setMeetings] = useState(initialMeetings);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -34,6 +39,8 @@ function MeetingSummary() {
   );
 
   const handleSave = (updatedMeeting) => {
+    if (editingMeeting ? !canEdit : !canAdd) return;
+
     if (editingMeeting) {
       setMeetings((prevMeetings) =>
         prevMeetings.map((meeting) =>
@@ -49,6 +56,8 @@ function MeetingSummary() {
   };
 
   const handleEdit = () => {
+    if (!canEdit || !selectedMeeting) return;
+
     setEditingMeeting(selectedMeeting);
     setShowForm(true);
   };
@@ -141,16 +150,17 @@ function MeetingSummary() {
                 ))}
               </ul>
 
-              <div className="meeting-actions">
-                <button onClick={handleEdit}>Edit</button>
-                {/* <button onClick={handleDelete}>Delete</button> */}
-              </div>
+              {canEdit && (
+                <div className="meeting-actions">
+                  <button onClick={handleEdit}>Edit</button>
+                </div>
+              )}
             </div>
           ) : (
             <p>No meeting details have been posted for this month.</p>
           )}
 
-          {!selectedMeeting && !showForm && (
+          {canAdd && !selectedMeeting && !showForm && (
             <button
               onClick={() => {
                 setEditingMeeting(null);

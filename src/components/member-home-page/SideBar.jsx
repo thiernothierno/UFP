@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import supabase from "../../lib/supabase";
 import "./sideBar.css";
 
 const navigationItems = [
@@ -32,13 +33,40 @@ const navigationItems = [
   },
   {
     label: "Account",
-    links: [{ label: "Profile" }, { label: "Settings" }, { label: "Sign out" }],
+    links: [],
   },
 ];
 
-const SideBar = () => {
+const SideBar = ({ member }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [expandedItems, setExpandedItems] = useState(() => new Set());
+  const [signOutError, setSignOutError] = useState("");
+  const [isSigningOut, setIsSigningOut] = useState(false);
+
+  async function handleSignOut() {
+    setIsSigningOut(true);
+    setSignOutError("");
+
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        setSignOutError(`Unable to sign out: ${error.message}`);
+        return;
+      }
+
+      navigate("/", { replace: true });
+    } catch (error) {
+      setSignOutError(
+        error instanceof Error
+          ? `Unable to sign out: ${error.message}`
+          : "An unexpected error occurred while signing out.",
+      );
+    } finally {
+      setIsSigningOut(false);
+    }
+  }
 
   function toggleItem(label) {
     setExpandedItems((currentItems) => {
@@ -83,12 +111,42 @@ const SideBar = () => {
               >
                 {label}
               </button>
-              <ul
-                className="member-submenu"
-                id={submenuId}
-                hidden={!isExpanded}
-              >
-                {links.map(({ label: linkLabel, to }) => {
+              <ul className="member-submenu" id={submenuId} hidden={!isExpanded}>
+                {label === "Account" ? (
+                  <>
+                    {/* These details come from the authenticated user's active member profile. */}
+                    <li className="member-profile" aria-label="Member profile">
+                      <p>
+                        <strong>Name</strong>
+                        <span>
+                          {[member.firstName, member.lastName]
+                            .filter(Boolean)
+                            .join(" ") || "Not provided"}
+                        </span>
+                      </p>
+                      <p>
+                        <strong>Email</strong>
+                        <span>{member.email || "Not provided"}</span>
+                      </p>
+                      <p>
+                        <strong>Member number</strong>
+                        <span>{member.memberNumber || "Not provided"}</span>
+                      </p>
+                    </li>
+                    <li>
+                      {/* Only an explicit sign-out action ends the session. */}
+                      <button
+                        className="sidebar-sign-out"
+                        type="button"
+                        onClick={handleSignOut}
+                        disabled={isSigningOut}
+                      >
+                        {isSigningOut ? "Signing out..." : "Sign out"}
+                      </button>
+                    </li>
+                  </>
+                ) : (
+                  links.map(({ label: linkLabel, to }) => {
                   const [path, query = ""] = (to ?? "").split("?");
                   const isActive =
                     Boolean(to) &&
@@ -105,6 +163,15 @@ const SideBar = () => {
                         >
                           {linkLabel}
                         </Link>
+                      ) : linkLabel === "Sign out" ? (
+                        <button
+                          className="sidebar-sign-out"
+                          type="button"
+                          onClick={handleSignOut}
+                          disabled={isSigningOut}
+                        >
+                          {isSigningOut ? "Signing out..." : linkLabel}
+                        </button>
                       ) : (
                         <span className="unavailable-link" aria-disabled="true">
                           {linkLabel}
@@ -112,12 +179,14 @@ const SideBar = () => {
                       )}
                     </li>
                   );
-                })}
+                  })
+                )}
               </ul>
             </li>
           );
         })}
       </ul>
+      {signOutError && <p role="alert">{signOutError}</p>}
     </nav>
   );
 };

@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
 const MemberLoginPage = () => {
+  const { state } = useLocation();
+
   const now = new Date();
   const year = now.getFullYear();
 
@@ -50,7 +52,8 @@ const MemberLoginPage = () => {
 
       {/* Main content */}
       <main className="main-content login-main-content">
-        {/* Your website content goes here */}
+        {/* Show the confirmation passed from the successful password-reset flow. */}
+        {state?.message && <p role="status">{state.message}</p>}
         <LoginForm />
       </main>
 

@@ -1,7 +1,16 @@
 import { useState } from "react";
 import RuleForm from "./RuleForm";
 
-const RegulationRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
+const RegulationRules = ({
+  rules,
+  onBack,
+  onAdd,
+  onEdit,
+  onDelete,
+  canAdd,
+  canEdit,
+  canDelete,
+}) => {
   const [showForm, setShowForm] = useState(false);
   const [editingRule, setEditingRule] = useState(null);
 
@@ -38,7 +47,7 @@ const RegulationRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
         <button onClick={onBack} className="back-to-rules">
           Back to Rules
         </button>
-        {!showForm && (
+        {canAdd && !showForm && (
           <button onClick={() => setShowForm(true)} className="add-rules">
             Add Rule
           </button>
@@ -68,11 +77,14 @@ const RegulationRules = ({ rules, onBack, onAdd, onEdit, onDelete }) => {
               <p>{rule.description}</p>
               <small>Date adopted: {rule.dateAdopted}</small>
 
-              <div className="rule-actions">
-                <button onClick={() => handleEdit(rule)}>Edit</button>
-
-                <button onClick={() => handleDelete(rule.id)}>Delete</button>
-              </div>
+              {(canEdit || canDelete) && (
+                <div className="rule-actions">
+                  {canEdit && <button onClick={() => handleEdit(rule)}>Edit</button>}
+                  {canDelete && (
+                    <button onClick={() => handleDelete(rule.id)}>Delete</button>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>

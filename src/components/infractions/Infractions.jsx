@@ -17,12 +17,14 @@ const months = [
 
 const categories = ["MSG", "Late", "Absence"];
 
-const Infractions = ({ rows, setRows }) => {
+const Infractions = ({ rows, setRows, readOnly = false }) => {
   // Search state
   const [searchTerm, setSearchTerm] = useState("");
 
   // Update an individual infraction
   const handleChange = (id, month, category, value) => {
+    if (readOnly) return;
+
     const field = `${month}_${category}`;
 
     setRows((prevRows) =>
@@ -120,22 +122,26 @@ const Infractions = ({ rows, setRows }) => {
 
                     return (
                       <td key={field}>
-                        <input
-                          type="text"
-                          className="custom-input"
-                          min="0"
-                          step="1"
-                          value={row[field]}
-                          style={{ width: "65px" }}
-                          onChange={(e) =>
-                            handleChange(
-                              row.id,
-                              month,
-                              category,
-                              e.target.value,
-                            )
-                          }
-                        />
+                        {readOnly ? (
+                          row[field] || "-"
+                        ) : (
+                          <input
+                            type="text"
+                            className="custom-input"
+                            min="0"
+                            step="1"
+                            value={row[field]}
+                            style={{ width: "65px" }}
+                            onChange={(e) =>
+                              handleChange(
+                                row.id,
+                                month,
+                                category,
+                                e.target.value,
+                              )
+                            }
+                          />
+                        )}
                       </td>
                     );
                   }),

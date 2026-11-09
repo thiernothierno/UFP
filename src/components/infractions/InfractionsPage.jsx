@@ -1,6 +1,12 @@
 import Infractions from "./Infractions";
-const InfractionsPage = ({ infractionRows, setInfractionRows }) => {
-  return <Infractions rows={infractionRows} setRows={setInfractionRows} />;
+const InfractionsPage = ({ infractionRows, setInfractionRows, readOnly }) => {
+  return (
+    <Infractions
+      rows={infractionRows}
+      setRows={setInfractionRows}
+      readOnly={readOnly}
+    />
+  );
 };
 
 export default InfractionsPage; 

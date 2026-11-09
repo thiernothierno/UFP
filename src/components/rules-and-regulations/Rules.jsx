@@ -3,6 +3,8 @@ import initialRules from "../../data/List-of-Rules";
 
 import SocialRules from "./SocialRules";
 import RegulationRules from "./RegulationRules";
+import { can } from "../../data/userPermission";
+import { useMember } from "../member-home-page/MemberContext";
 import "./rules.css";
 
 // Find the highest existing rule number in each category.
@@ -20,6 +22,10 @@ const getNextNumber = (category, rules) => {
 };
 
 const Rules = () => {
+  const member = useMember();
+  const canAddRules = can(member.role, "add", "rules");
+  const canEditRules = can(member.role, "edit", "rules");
+  const canDeleteRules = can(member.role, "delete", "rules");
   const [activeCategory, setActiveCategory] = useState("home");
   const [rules, setRules] = useState(initialRules);
 
@@ -37,6 +43,8 @@ const Rules = () => {
   );
 
   const addRule = (newRule) => {
+    if (!canAddRules) return;
+
     const category = newRule.category;
     const number =
       category === "Social" ? nextSocialNumber : nextRegulationNumber;
@@ -60,6 +68,8 @@ const Rules = () => {
   };
 
   const editRule = (id, updatedFields) => {
+    if (!canEditRules) return;
+
     setRules((previousRules) =>
       previousRules.map((rule) =>
         rule.id === id
@@ -76,6 +86,8 @@ const Rules = () => {
   };
 
   const deleteRule = (id) => {
+    if (!canDeleteRules) return;
+
     setRules((previousRules) => previousRules.filter((rule) => rule.id !== id));
   };
 
@@ -93,6 +105,9 @@ const Rules = () => {
         onAdd={addRule}
         onEdit={editRule}
         onDelete={deleteRule}
+        canAdd={canAddRules}
+        canEdit={canEditRules}
+        canDelete={canDeleteRules}
       />
     );
   }
@@ -105,6 +120,9 @@ const Rules = () => {
         onAdd={addRule}
         onEdit={editRule}
         onDelete={deleteRule}
+        canAdd={canAddRules}
+        canEdit={canEditRules}
+        canDelete={canDeleteRules}
       />
     );
   }

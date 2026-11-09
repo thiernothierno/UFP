@@ -4,6 +4,8 @@ import members from "../data/List-of-Members";
 import InfractionsPage from "../components/infractions/InfractionsPage";
 import PaymentSummaryPage from "../components/summary/PaymentSummaryPage";
 import PaymentTrackingPage from "../components/payments/PaymentTrackingPage";
+import { can } from "../data/userPermission";
+import { useMember } from "../components/member-home-page/MemberContext";
 import "./paymentStatus.css";
 
 //- Managing the selected year.
@@ -64,6 +66,10 @@ const createYearData = () => ({
 });
 
 const PaymentStatus = () => {
+  const member = useMember();
+  // Members see records read-only; only board-role permissions enable edits.
+  const canEditPayments = can(member.role, "edit", "monthly-payments");
+  const canEditInfractions = can(member.role, "edit", "infractions");
   const [searchParams, setSearchParams] = useSearchParams();
   const requestedPage = searchParams.get("view");
   const activePage = validPages.includes(requestedPage)
@@ -160,6 +166,7 @@ const PaymentStatus = () => {
         <PaymentTrackingPage
           monthlyValues={currentYearData.payments}
           setMonthlyValues={updatePayments}
+          readOnly={!canEditPayments}
         />
       )}
 
@@ -167,6 +174,7 @@ const PaymentStatus = () => {
         <InfractionsPage
           infractionRows={currentYearData.infractions}
           setInfractionRows={updateInfractions}
+          readOnly={!canEditInfractions}
         />
       )}
 

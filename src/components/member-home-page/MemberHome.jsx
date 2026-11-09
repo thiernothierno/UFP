@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import SideBar from "./SideBar";
-const MemberHome = () => {
+const MemberHome = ({ member }) => {
   const { pathname } = useLocation();
   const wideTablePage =
     pathname === "/user-login/records" ||
@@ -26,7 +26,7 @@ const MemberHome = () => {
         <nav className="home-nav-bar">
           <ul className="nav-center">
             <li>
-              <Link to="/">HOME</Link>
+              <Link to="/user-login">HOME</Link>
             </li>
             <li>
               <Link to="/about">ABOUT</Link>
@@ -62,7 +62,8 @@ const MemberHome = () => {
         className={`main-content member-main ${sidebarVisible ? "" : "member-main--wide"}`}
       >
         <div className={sidebarVisible ? "" : "member-sidebar--hidden"}>
-          <SideBar />
+          {/* Profile details are loaded and validated by RequireActiveMember. */}
+          <SideBar member={member} />
         </div>
         <section className="member-content">
           <button

@@ -1,9 +1,13 @@
 import { useState } from "react";
 import initialPosts from "../../data/assistance";
 import AssistanceForm from "./AssistanceForm";
+import { can } from "../../data/userPermission";
+import { useMember } from "../member-home-page/MemberContext";
 import "./assistance.css";
 
 const Assistance = () => {
+  const member = useMember();
+  const canAdd = can(member.role, "add", "assistance");
   const [posts, setPosts] = useState(initialPosts);
 
   const [showForm, setShowForm] = useState(false);
@@ -12,6 +16,15 @@ const Assistance = () => {
   // Add or update an assistance post
   const handleSave = (postData) => {
     if (editingPost) {
+      if (
+        !can(member.role, "edit", "assistance", {
+          userId: member.id,
+          ownerId: editingPost.ownerId,
+        })
+      ) {
+        return;
+      }
+
       // Update existing post
       setPosts((previousPosts) =>
         previousPosts.map((post) =>
@@ -21,10 +34,13 @@ const Assistance = () => {
         ),
       );
     } else {
+      if (!canAdd) return;
+
       // Add new post
       const newPost = {
-        id: Date.now(),
         ...postData,
+        id: Date.now(),
+        ownerId: member.id,
       };
 
       setPosts((previousPosts) => [...previousPosts, newPost]);
@@ -36,17 +52,35 @@ const Assistance = () => {
 
   // Open form to edit a post
   const handleEdit = (post) => {
+    if (
+      !can(member.role, "edit", "assistance", {
+        userId: member.id,
+        ownerId: post.ownerId,
+      })
+    ) {
+      return;
+    }
+
     setEditingPost(post);
     setShowForm(true);
   };
 
   // Delete a post
-  const handleDelete = (id) => {
+  const handleDelete = (post) => {
+    if (
+      !can(member.role, "delete", "assistance", {
+        userId: member.id,
+        ownerId: post.ownerId,
+      })
+    ) {
+      return;
+    }
+
     // if (
     //   window.confirm("Are you sure you want to delete this assistance post?")
     // ) {
       setPosts((previousPosts) =>
-        previousPosts.filter((post) => post.id !== id),
+        previousPosts.filter((existingPost) => existingPost.id !== post.id),
       );
     // }
   };
@@ -63,7 +97,7 @@ const Assistance = () => {
       <h2>Member Assistance</h2>
       <p>View and post assistance requests.</p>
 
-      {!showForm && (
+      {canAdd && !showForm && (
         <button
           className="add-assistance-button"
           onClick={() => setShowForm(true)}
@@ -97,11 +131,21 @@ const Assistance = () => {
 
                 <small>Date posted: {post.datePosted}</small>
 
-                <div className="assistance-actions">
-                  <button onClick={() => handleEdit(post)}>Edit</button>
-
-                  <button onClick={() => handleDelete(post.id)}>Delete</button>
-                </div>
+                {/* Owners alone get edit and delete controls for their posts. */}
+                {can(member.role, "edit", "assistance", {
+                  userId: member.id,
+                  ownerId: post.ownerId,
+                }) && (
+                  <div className="assistance-actions">
+                    <button onClick={() => handleEdit(post)}>Edit</button>
+                    {can(member.role, "delete", "assistance", {
+                      userId: member.id,
+                      ownerId: post.ownerId,
+                    }) && (
+                      <button onClick={() => handleDelete(post)}>Delete</button>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>

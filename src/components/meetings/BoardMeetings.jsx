@@ -1,6 +1,8 @@
 import { useState } from "react";
 import initialMeetings from "../../data/meetings";
 import MeetingForm from "./MeetingForm";
+import { can } from "../../data/userPermission";
+import { useMember } from "../member-home-page/MemberContext";
 import "./meetings.css";
 
 const months = [
@@ -19,6 +21,10 @@ const months = [
 ];
 
 function BoardMeetings() {
+  const member = useMember();
+  const canAdd = can(member.role, "add", "meetings");
+  const canEdit = can(member.role, "edit", "meetings");
+  const canDelete = can(member.role, "delete", "meetings");
   const [meetings, setMeetings] = useState(initialMeetings);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -34,6 +40,8 @@ function BoardMeetings() {
   );
 
   const handleSave = (updatedMeeting) => {
+    if (editingMeeting ? !canEdit : !canAdd) return;
+
     if (editingMeeting) {
       setMeetings((prevMeetings) =>
         prevMeetings.map((meeting) =>
@@ -49,21 +57,21 @@ function BoardMeetings() {
   };
 
   const handleEdit = () => {
+    if (!canEdit || !selectedMeeting) return;
+
     setEditingMeeting(selectedMeeting);
     setShowForm(true);
   };
 
-  //   const handleDelete = () => {
-  //     const confirmed = window.confirm(
-  //       "Are you sure you want to delete this meeting?",
-  //     );
+  const handleDelete = () => {
+    if (!canDelete || !selectedMeeting) return;
 
-  //     if (confirmed) {
-  //       setMeetings((prevMeetings) =>
-  //         prevMeetings.filter((meeting) => meeting.id !== selectedMeeting.id),
-  //       );
-  //     }
-  //   };
+    if (window.confirm("Are you sure you want to delete this meeting?")) {
+      setMeetings((previousMeetings) =>
+        previousMeetings.filter((meeting) => meeting.id !== selectedMeeting.id),
+      );
+    }
+  };
 
   return (
     <div className="meetings-container">
@@ -141,16 +149,18 @@ function BoardMeetings() {
                 ))}
               </ul>
 
-              <div className="meeting-actions">
-                <button onClick={handleEdit}>Edit</button>
-                {/* <button onClick={handleDelete}>Delete</button> */}
-              </div>
+              {(canEdit || canDelete) && (
+                <div className="meeting-actions">
+                  {canEdit && <button onClick={handleEdit}>Edit</button>}
+                  {canDelete && <button onClick={handleDelete}>Delete</button>}
+                </div>
+              )}
             </div>
           ) : (
             <p>No meeting details have been posted for this month.</p>
           )}
 
-          {!selectedMeeting && !showForm && (
+          {canAdd && !selectedMeeting && !showForm && (
             <button
               onClick={() => {
                 setEditingMeeting(null);

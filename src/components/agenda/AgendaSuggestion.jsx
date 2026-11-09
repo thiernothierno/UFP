@@ -1,8 +1,12 @@
 import { useState } from "react";
 import initialPosts from "../../data/agenda";
 import AgendaForm from "./AgendaForm";
+import { can } from "../../data/userPermission";
+import { useMember } from "../member-home-page/MemberContext";
 import "./agenda.css";
 const AgendaSuggestion = () => {
+  const member = useMember();
+  const canAdd = can(member.role, "add", "agenda");
   const [posts, setPosts] = useState(initialPosts);
 
   const [showForm, setShowForm] = useState(false);
@@ -11,6 +15,15 @@ const AgendaSuggestion = () => {
   // Add or update an agenda post
   const handleSave = (postData) => {
     if (editingPost) {
+      if (
+        !can(member.role, "edit", "agenda", {
+          userId: member.id,
+          ownerId: editingPost.ownerId,
+        })
+      ) {
+        return;
+      }
+
       // Update existing post
       setPosts((previousPosts) =>
         previousPosts.map((post) =>
@@ -20,10 +33,13 @@ const AgendaSuggestion = () => {
         ),
       );
     } else {
+      if (!canAdd) return;
+
       // Add new post
       const newPost = {
-        id: Date.now(),
         ...postData,
+        id: Date.now(),
+        ownerId: member.id,
       };
 
       setPosts((previousPosts) => [...previousPosts, newPost]);
@@ -35,15 +51,33 @@ const AgendaSuggestion = () => {
 
   // Open form to edit a post
   const handleEdit = (post) => {
+    if (
+      !can(member.role, "edit", "agenda", {
+        userId: member.id,
+        ownerId: post.ownerId,
+      })
+    ) {
+      return;
+    }
+
     setEditingPost(post);
     setShowForm(true);
   };
 
   // Delete a post
-  const handleDelete = (id) => {
+  const handleDelete = (post) => {
+    if (
+      !can(member.role, "delete", "agenda", {
+        userId: member.id,
+        ownerId: post.ownerId,
+      })
+    ) {
+      return;
+    }
+
     // if (window.confirm("Are you sure you want to delete this agenda post?")) {
       setPosts((previousPosts) =>
-        previousPosts.filter((post) => post.id !== id),
+        previousPosts.filter((existingPost) => existingPost.id !== post.id),
       );
     // }
   };
@@ -60,7 +94,7 @@ const AgendaSuggestion = () => {
       <header className="agenda-header">
           <h2>Any topic you want to share?</h2>
 
-          {!showForm && (
+          {canAdd && !showForm && (
             <button className="add-agenda-button" onClick={() => setShowForm(true)}>
               Post Your Topic
             </button>
@@ -91,11 +125,21 @@ const AgendaSuggestion = () => {
 
                 <small>Date posted: {post.datePosted}</small>
 
-                <div className="agenda-actions">
-                  <button onClick={() => handleEdit(post)}>Edit</button>
-
-                  <button onClick={() => handleDelete(post.id)}>Delete</button>
-                </div>
+                {/* Owners alone get edit and delete controls for their posts. */}
+                {can(member.role, "edit", "agenda", {
+                  userId: member.id,
+                  ownerId: post.ownerId,
+                }) && (
+                  <div className="agenda-actions">
+                    <button onClick={() => handleEdit(post)}>Edit</button>
+                    {can(member.role, "delete", "agenda", {
+                      userId: member.id,
+                      ownerId: post.ownerId,
+                    }) && (
+                      <button onClick={() => handleDelete(post)}>Delete</button>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>

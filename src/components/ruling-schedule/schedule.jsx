@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { can } from "../../data/userPermission";
+import { useMember } from "../member-home-page/MemberContext";
 import "./schedule.css";
 
 // List of board members
@@ -65,6 +67,12 @@ function create_groups() {
 }
 
 const Schedule = () => {
+  const member = useMember();
+  const canUpdateActiveDuty = can(
+    member.role,
+    "update-active-duty",
+    "ruling-schedule",
+  );
   const [groups] = useState(() => create_groups());
 
   const [activeGroup, setActiveGroup] = useState(null);
@@ -84,9 +92,12 @@ const Schedule = () => {
             <div className="group-header">
               <h3>Group {index + 1}</h3>
 
+              {/* Only board members may change the active-duty selection. */}
               <input
                 type="checkbox"
                 checked={activeGroup === index}
+                disabled={!canUpdateActiveDuty}
+                aria-label={`Set group ${index + 1} as active duty`}
                 onChange={() =>
                   setActiveGroup(activeGroup === index ? null : index)
                 }

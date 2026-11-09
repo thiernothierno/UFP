@@ -16,12 +16,18 @@ const months = [
   "Y_fee",
 ];
 
-const MonthlyPaymentTracking = ({ monthlyValues, setMonthlyValues }) => {
+const MonthlyPaymentTracking = ({
+  monthlyValues,
+  setMonthlyValues,
+  readOnly = false,
+}) => {
   // state variable to hold specific user
   const [searchTerm, setSearchTerm] = useState("");
 
   // function that handle individual cell without affect others.
   const handleMonthlyFee = (id, month, value) => {
+    if (readOnly) return;
+
     setMonthlyValues((prevRows) =>
       prevRows.map((row) => (row.id === id ? { ...row, [month]: value } : row)),
     );
@@ -80,14 +86,18 @@ const MonthlyPaymentTracking = ({ monthlyValues, setMonthlyValues }) => {
 
               {months.map((month) => (
                 <td key={month}>
-                  <input
-                    type="text"
-                    value={row[month]}
-                    className="custom-input"
-                    onChange={(e) =>
-                      handleMonthlyFee(row.id, month, e.target.value)
-                    }
-                  />
+                  {readOnly ? (
+                    row[month] || "-"
+                  ) : (
+                    <input
+                      type="text"
+                      value={row[month]}
+                      className="custom-input"
+                      onChange={(e) =>
+                        handleMonthlyFee(row.id, month, e.target.value)
+                      }
+                    />
+                  )}
                 </td>
               ))}
               <td>

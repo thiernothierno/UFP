@@ -1,3 +1,4 @@
+// Shared UI policy: map each resource/action pair to the roles allowed to use it.
 const permissionRules = {
   "public-pages": {
     view: ["visitor", "member", "board"],
@@ -27,7 +28,6 @@ const permissionRules = {
     view: ["member", "board"],
     add: ["board"],
     edit: ["board"],
-    delete: ["board"]
   },
   "ruling-schedule": {
     view: ["member", "board"],
@@ -71,6 +71,7 @@ export function can(role, action, resource, { userId, ownerId } = {}) {
     ["edit", "delete"].includes(action);
 
   if (ownershipRequired) {
+    // Post-management permissions also require the signed-in user to own the post.
     return userId != null && ownerId != null && userId === ownerId;
   }
 
