@@ -1,36 +1,21 @@
 import { useState } from "react";
 
-const AgendaForm = ({ post, onSave, onCancel }) => {
-  const [name, setName] = useState(post?.name || "");
+const AgendaForm = ({ post, onSave, onCancel, isSaving = false }) => {
   const [title, setTitle] = useState(post?.title || "");
   const [description, setDescription] = useState(post?.description || "");
-  const [datePosted, setDatePosted] = useState(
-    post?.datePosted || new Date().toLocaleDateString("en-CA"),
-  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     onSave({
-      name,
       title,
       description,
-      datePosted,
     });
   };
 
   return (
     <form className="agenda-form" onSubmit={handleSubmit}>
-      <h3>{post ? "Edit agenda Post" : ""}</h3>
-
-      <label>Member Name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="Enter member name"
-        required
-      />
+      <h3>{post ? "Edit agenda post" : "Create agenda post"}</h3>
 
       <label>Agenda Proposal</label>
       <input
@@ -50,18 +35,12 @@ const AgendaForm = ({ post, onSave, onCancel }) => {
         required
       />
 
-      <label>Date Posted</label>
-      <input
-        type="date"
-        value={datePosted}
-        onChange={(event) => setDatePosted(event.target.value)}
-        required
-      />
-
       <div className="agenda-form-buttons">
-        <button type="submit">{post ? "Save Changes" : "Submit Post"}</button>
+        <button type="submit" disabled={isSaving}>
+          {isSaving ? "Saving..." : post ? "Save Changes" : "Submit Post"}
+        </button>
 
-        <button type="button" onClick={onCancel}>
+        <button type="button" onClick={onCancel} disabled={isSaving}>
           Cancel
         </button>
       </div>

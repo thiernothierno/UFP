@@ -1,39 +1,30 @@
 import { useState } from "react";
 
-const AssistanceForm = ({ post, onSave, onCancel }) => {
-  const [name, setName] = useState(post?.name || "");
+const AssistanceForm = ({
+  post,
+  onSave,
+  onCancel,
+  isSaving = false,
+}) => {
   const [title, setTitle] = useState(post?.title || "");
   const [description, setDescription] = useState(post?.description || "");
-  const [datePosted, setDatePosted] = useState(
-    post?.datePosted || new Date().toLocaleDateString("en-CA"),
-  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     onSave({
-      name,
       title,
       description,
-      datePosted,
     });
   };
 
   return (
     <form className="assistance-form" onSubmit={handleSubmit}>
-      <h3>{post ? "Edit Assistance Post" : ""}</h3>
+      <h3>{post ? "Edit Assistance Post" : "Create Assistance Post"}</h3>
 
-      <label>Member Name</label>
+      <label htmlFor="assistance-title">Assistance Title</label>
       <input
-        type="text"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="Enter member name"
-        required
-      />
-
-      <label>Assistance Title</label>
-      <input
+        id="assistance-title"
         type="text"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
@@ -41,8 +32,9 @@ const AssistanceForm = ({ post, onSave, onCancel }) => {
         required
       />
 
-      <label>Description</label>
+      <label htmlFor="assistance-description">Description</label>
       <textarea
+        id="assistance-description"
         value={description}
         onChange={(event) => setDescription(event.target.value)}
         placeholder="Describe the assistance needed"
@@ -50,18 +42,12 @@ const AssistanceForm = ({ post, onSave, onCancel }) => {
         required
       />
 
-      <label>Date Posted</label>
-      <input
-        type="date"
-        value={datePosted}
-        onChange={(event) => setDatePosted(event.target.value)}
-        required
-      />
-
       <div className="assistance-form-buttons">
-        <button type="submit">{post ? "Save Changes" : "Submit Post"}</button>
+        <button type="submit" disabled={isSaving}>
+          {isSaving ? "Saving..." : post ? "Save Changes" : "Submit Post"}
+        </button>
 
-        <button type="button" onClick={onCancel}>
+        <button type="button" onClick={onCancel} disabled={isSaving}>
           Cancel
         </button>
       </div>

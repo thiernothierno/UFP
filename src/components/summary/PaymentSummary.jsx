@@ -87,7 +87,9 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
   // Filter result by id or first name
   const filteredRows = summaryRows.filter(
     (row) =>
-      row.id.toString().includes(searchTerm.trim()) ||
+      String(row.member_number ?? row.id)
+        .toLowerCase()
+        .includes(searchTerm.trim().toLowerCase()) ||
       row.First_Name.toLowerCase().includes(searchTerm.trim().toLowerCase()),
   );
   // Calculate grand totals
@@ -114,7 +116,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <div style={{ overflowX: "auto" }}>
+      <div className="table-scroll-wrapper">
         <table border="1" cellPadding="8" className="summary-table">
           <thead>
             <tr>
@@ -130,7 +132,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
           <tbody>
             {filteredRows.map((row) => (
               <tr key={row.id}>
-                <td>{row.id}</td>
+                <td>{row.member_number ?? row.id}</td>
                 <td>{row.First_Name}</td>
                 <td>{row.Last_Name}</td>
 

@@ -11,16 +11,22 @@ const SocialRules = ({
   canAdd,
   canEdit,
   canDelete,
+  isLoading,
+  isSaving,
+  deletingRuleId,
+  loadError,
+  saveError,
+  deleteError,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [editingRule, setEditingRule] = useState(null);
 
-  const handleSave = (ruleData) => {
-    if (editingRule) {
-      onEdit(editingRule.id, ruleData);
-    } else {
-      onAdd(ruleData);
-    }
+  const handleSave = async (ruleData) => {
+    const saved = editingRule
+      ? await onEdit(editingRule.id, ruleData)
+      : await onAdd(ruleData);
+
+    if (!saved) return;
 
     setShowForm(false);
     setEditingRule(null);
@@ -36,9 +42,13 @@ const SocialRules = ({
     setEditingRule(null);
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this rule?")) {
-      onDelete(id);
+  const handleDelete = async (rule) => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete ${rule.ruleNumber} - ${rule.title}?`,
+      )
+    ) {
+      await onDelete(rule.id);
     }
   };
 
@@ -56,6 +66,9 @@ const SocialRules = ({
       </div>
 
       <h2 className="rules-title">Social Rules</h2>
+      {loadError && <p role="alert">Could not load rules: {loadError}</p>}
+      {saveError && <p role="alert">Could not save rule: {saveError}</p>}
+      {deleteError && <p role="alert">Could not delete rule: {deleteError}</p>}
 
       {showForm && (
         <RuleForm
@@ -63,10 +76,13 @@ const SocialRules = ({
           rule={editingRule}
           onSave={handleSave}
           onCancel={handleCancel}
+          isSaving={isSaving}
         />
       )}
 
-      {rules.length === 0 ? (
+      {isLoading ? (
+        <p role="status">Loading rules...</p>
+      ) : loadError ? null : rules.length === 0 ? (
         <p>No social rules have been added yet.</p>
       ) : (
         <div className="rules-grid">
@@ -80,9 +96,21 @@ const SocialRules = ({
 
               {(canEdit || canDelete) && (
                 <div className="rule-actions">
-                  {canEdit && <button onClick={() => handleEdit(rule)}>Edit</button>}
+                  {canEdit && (
+                    <button
+                      onClick={() => handleEdit(rule)}
+                      disabled={isSaving || deletingRuleId !== null}
+                    >
+                      Edit
+                    </button>
+                  )}
                   {canDelete && (
-                    <button onClick={() => handleDelete(rule.id)}>Delete</button>
+                    <button
+                      onClick={() => handleDelete(rule)}
+                      disabled={deletingRuleId !== null || isSaving}
+                    >
+                      {deletingRuleId === rule.id ? "Deleting..." : "Delete"}
+                    </button>
                   )}
                 </div>
               )}

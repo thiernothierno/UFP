@@ -1,8 +1,8 @@
-import { useState } from "react";
-import initialMeetings from "../../data/meetings";
+import { useEffect, useState } from "react";
 import MeetingForm from "./MeetingForm";
 import { can } from "../../data/userPermission";
 import { useMember } from "../member-home-page/MemberContext";
+import supabase from "../../lib/supabase";
 import "./meetings.css";
 
 const months = [
@@ -25,35 +25,134 @@ function BoardMeetings() {
   const canAdd = can(member.role, "add", "meetings");
   const canEdit = can(member.role, "edit", "meetings");
   const canDelete = can(member.role, "delete", "meetings");
-  const [meetings, setMeetings] = useState(initialMeetings);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [currentYear] = useState(() => new Date().getFullYear());
+  const [meetings, setMeetings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+  const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [editingMeeting, setEditingMeeting] = useState(null);
+  const [formError, setFormError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const now = new Date();
-  const currentYear = now.getFullYear();
+  useEffect(() => {
+    let isCurrent = true;
+
+    const loadMeetings = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("meetings")
+          .select("id, meeting_date, start_time, location, details, created_at")
+          .order("meeting_date", { ascending: true });
+
+        if (error) {
+          if (isCurrent) setLoadError(error.message);
+          return;
+        }
+
+        if (isCurrent) {
+          setMeetings(
+            data.map((meeting) => {
+              const [year, month] = meeting.meeting_date
+                .split("-")
+                .map(Number);
+
+              return {
+                ...meeting,
+                year,
+                month,
+                meetingDate: meeting.meeting_date,
+                startTime: meeting.start_time.slice(0, 5),
+              };
+            }),
+          );
+        }
+      } catch (error) {
+        if (isCurrent) {
+          setLoadError(
+            error instanceof Error
+              ? error.message
+              : "An unexpected error occurred while loading meetings.",
+          );
+        }
+      } finally {
+        if (isCurrent) setIsLoading(false);
+      }
+    };
+
+    loadMeetings();
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
 
   const selectedMeeting = meetings.find(
     (meeting) =>
       meeting.year === selectedYear && meeting.month === selectedMonth,
   );
 
-  const handleSave = (updatedMeeting) => {
+  const handleSave = async (meetingData) => {
     if (editingMeeting ? !canEdit : !canAdd) return;
+    setFormError("");
+    setIsSaving(true);
 
-    if (editingMeeting) {
-      setMeetings((prevMeetings) =>
-        prevMeetings.map((meeting) =>
-          meeting.id === updatedMeeting.id ? updatedMeeting : meeting,
-        ),
+    try {
+      const values = {
+        meeting_date: meetingData.meetingDate,
+        start_time: meetingData.startTime,
+        location: meetingData.location,
+        details: meetingData.details,
+      };
+      const query = editingMeeting
+        ? supabase
+            .from("meetings")
+            .update(values)
+            .eq("id", editingMeeting.id)
+        : supabase.from("meetings").insert(values);
+      const { data: savedMeeting, error } = await query
+        .select("id, meeting_date, start_time, location, details, created_at")
+        .single();
+
+      if (error) {
+        setFormError(error.message);
+        return;
+      }
+
+      const [year, month] = savedMeeting.meeting_date.split("-").map(Number);
+      const normalizedMeeting = {
+        ...savedMeeting,
+        year,
+        month,
+        meetingDate: savedMeeting.meeting_date,
+        startTime: savedMeeting.start_time.slice(0, 5),
+      };
+
+      setMeetings((previousMeetings) =>
+        editingMeeting
+          ? previousMeetings.map((meeting) =>
+              meeting.id === normalizedMeeting.id
+                ? normalizedMeeting
+                : meeting,
+            )
+          : [...previousMeetings, normalizedMeeting],
       );
-    } else {
-      setMeetings((prevMeetings) => [...prevMeetings, updatedMeeting]);
+      setSelectedYear(year);
+      setSelectedMonth(month);
+      setShowForm(false);
+      setEditingMeeting(null);
+    } catch (error) {
+      setFormError(
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred while saving the meeting.",
+      );
+    } finally {
+      setIsSaving(false);
     }
-
-    setShowForm(false);
-    setEditingMeeting(null);
   };
 
   const handleEdit = () => {
@@ -63,19 +162,47 @@ function BoardMeetings() {
     setShowForm(true);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (!canDelete || !selectedMeeting) return;
 
     if (window.confirm("Are you sure you want to delete this meeting?")) {
-      setMeetings((previousMeetings) =>
-        previousMeetings.filter((meeting) => meeting.id !== selectedMeeting.id),
-      );
+      setDeleteError("");
+      setIsDeleting(true);
+
+      try {
+        const { error } = await supabase
+          .from("meetings")
+          .delete()
+          .eq("id", selectedMeeting.id)
+          .select("id")
+          .single();
+
+        if (error) {
+          setDeleteError(error.message);
+          return;
+        }
+
+        setMeetings((previousMeetings) =>
+          previousMeetings.filter(
+            (meeting) => meeting.id !== selectedMeeting.id,
+          ),
+        );
+      } catch (error) {
+        setDeleteError(
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred while deleting the meeting.",
+        );
+      } finally {
+        setIsDeleting(false);
+      }
     }
   };
 
   return (
     <div className="meetings-container">
       <h2 className="meetings-title">Board Meeting Details</h2>
+      {loadError && <p role="alert">Could not load meetings: {loadError}</p>}
 
       <div className="meetings-year">
         <label>Select Year:</label>
@@ -127,7 +254,9 @@ function BoardMeetings() {
             {months[selectedMonth - 1]} {selectedYear} Meeting
           </h3>
 
-          {selectedMeeting ? (
+          {isLoading ? (
+            <p role="status">Loading meetings...</p>
+          ) : loadError ? null : selectedMeeting ? (
             <div className="meeting-card">
               <p>
                 <strong>Date:</strong> {selectedMeeting.meetingDate}
@@ -152,12 +281,23 @@ function BoardMeetings() {
               {(canEdit || canDelete) && (
                 <div className="meeting-actions">
                   {canEdit && <button onClick={handleEdit}>Edit</button>}
-                  {canDelete && <button onClick={handleDelete}>Delete</button>}
+                  {canDelete && (
+                    <button onClick={handleDelete} disabled={isDeleting}>
+                      {isDeleting ? "Deleting..." : "Delete"}
+                    </button>
+                  )}
                 </div>
               )}
             </div>
           ) : (
             <p>No meeting details have been posted for this month.</p>
+          )}
+
+          {deleteError && (
+            <p role="alert">Could not delete meeting: {deleteError}</p>
+          )}
+          {formError && (
+            <p role="alert">Could not save meeting: {formError}</p>
           )}
 
           {canAdd && !selectedMeeting && !showForm && (
@@ -177,6 +317,7 @@ function BoardMeetings() {
               month={selectedMonth}
               meeting={editingMeeting}
               onSave={handleSave}
+              isSaving={isSaving}
               onCancel={() => {
                 setShowForm(false);
                 setEditingMeeting(null);

@@ -27,6 +27,25 @@ td {
   background-color: bisque;
 }
 
+.payment-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-scroll-wrapper {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.payment-table {
+  min-width: 1450px;
+}
+
+.payment-table .custom-input {
+  width: 88px;
+  padding: 4px 6px;
+}
+
 /* search bar  */
 .search-bar {
   padding: 10px;

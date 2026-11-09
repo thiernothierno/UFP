@@ -1,80 +1,45 @@
 import { useState } from "react";
 
-function MeetingSummaryForm({ year, month, meeting, onSave, onCancel }) {
-  const [meetingDate, setMeetingDate] = useState(meeting?.meetingDate || "");
-  const [startTime, setStartTime] = useState(meeting?.startTime || "");
-  const [location, setLocation] = useState(meeting?.location || "");
+function MeetingSummaryForm({ meeting, onSave, onCancel, isSaving = false }) {
   const [details, setDetails] = useState(meeting?.details || [""]);
+  const [validationError, setValidationError] = useState("");
 
   const handleAddDetail = () => {
-    setDetails([...details, ""]);
+    setDetails((previousDetails) => [...previousDetails, ""]);
   };
 
   const handleDetailChange = (index, value) => {
-    const updatedDetails = [...details];
-    updatedDetails[index] = value;
-    setDetails(updatedDetails);
+    setDetails((previousDetails) =>
+      previousDetails.map((detail, detailIndex) =>
+        detailIndex === index ? value : detail,
+      ),
+    );
   };
 
   const handleRemoveDetail = (index) => {
-    setDetails(details.filter((_, i) => i !== index));
+    setDetails((previousDetails) =>
+      previousDetails.filter((_, detailIndex) => detailIndex !== index),
+    );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const cleanDetails = details
-      .map((detail) => detail.trim())
-      .filter((detail) => detail !== "");
+    const cleanDetails = details.map((detail) => detail.trim()).filter(Boolean);
 
     if (cleanDetails.length === 0) {
-      alert("Please enter at least one meeting detail.");
+      setValidationError("Enter at least one summary detail.");
       return;
     }
 
-    const updatedMeeting = {
-      id: meeting?.id || Date.now(),
-      year,
-      month,
-      // meetingDate,
-      // startTime,
-      // location,
-      details: cleanDetails,
-      datePosted: meeting?.datePosted || new Date().toISOString().slice(0, 10),
-    };
-
-    onSave(updatedMeeting);
+    setValidationError("");
+    onSave({ details: cleanDetails });
   };
 
   return (
     <form className="meeting-form" onSubmit={handleSubmit}>
-      <h3>{meeting ? "Edit Meeting Details" : "Add Meeting Details"}</h3>
-
-      {/* <label>Meeting Date:</label>
-      <input
-        type="date"
-        value={meetingDate}
-        onChange={(e) => setMeetingDate(e.target.value)}
-        required
-      />
-
-      <label>Start Time:</label>
-      <input
-        type="time"
-        value={startTime}
-        onChange={(e) => setStartTime(e.target.value)}
-        required
-      />
-
-      <label>Location:</label>
-      <input
-        type="text"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        required
-      /> */}
-
-      <h4>Meeting Details</h4>
+      <h3>{meeting ? "Edit Meeting Summary" : "Add Meeting Summary"}</h3>
+      <h4>Summary Details</h4>
 
       {details.map((detail, index) => (
         <div className="detail-input" key={index}>
@@ -83,28 +48,35 @@ function MeetingSummaryForm({ year, month, meeting, onSave, onCancel }) {
           <input
             type="text"
             value={detail}
-            placeholder={`Meeting detail ${index + 1}`}
-            onChange={(e) => handleDetailChange(index, e.target.value)}
+            placeholder={`Summary detail ${index + 1}`}
+            onChange={(event) => handleDetailChange(index, event.target.value)}
+            disabled={isSaving}
           />
 
           {details.length > 1 && (
-            <button type="button" onClick={() => handleRemoveDetail(index)}>
+            <button
+              type="button"
+              onClick={() => handleRemoveDetail(index)}
+              disabled={isSaving}
+            >
               Remove
             </button>
           )}
         </div>
       ))}
 
-      <button type="button" onClick={handleAddDetail}>
+      {validationError && <p role="alert">{validationError}</p>}
+
+      <button type="button" onClick={handleAddDetail} disabled={isSaving}>
         + Add Bullet Point
       </button>
 
       <div className="meeting-form-actions">
-        <button type="submit">
-          {meeting ? "Update Meeting" : "Save Meeting"}
+        <button type="submit" disabled={isSaving}>
+          {isSaving ? "Saving..." : meeting ? "Update Summary" : "Save Summary"}
         </button>
 
-        <button type="button" onClick={onCancel}>
+        <button type="button" onClick={onCancel} disabled={isSaving}>
           Cancel
         </button>
       </div>

@@ -4,6 +4,11 @@
   border-collapse: collapse;
 }
 
+.table-scroll-wrapper {
+  max-height: 60vh;
+  overflow: auto;
+}
+
 .summary-table th,
 .summary-table td {
   padding: 10px;

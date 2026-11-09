@@ -16,8 +16,20 @@ const months = [
 ];
 
 const categories = ["MSG", "Late", "Absence"];
+const formatCurrency = (amount) =>
+  Number(amount || 0).toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 
-const Infractions = ({ rows, setRows, readOnly = false }) => {
+const Infractions = ({
+  rows,
+  setRows,
+  readOnly = false,
+  isLoading = false,
+  savingCell = null,
+  onSaveInfraction,
+}) => {
   // Search state
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -60,24 +72,32 @@ const Infractions = ({ rows, setRows, readOnly = false }) => {
   // Search by ID or First Name
   const filteredRows = rows.filter(
     (row) =>
-      row.id.toString().includes(searchTerm.trim()) ||
+      String(row.member_number ?? row.id)
+        .toLowerCase()
+        .includes(searchTerm.trim().toLowerCase()) ||
       row.First_Name.toLowerCase().includes(searchTerm.trim().toLowerCase()),
   );
 
   return (
     <div>
       <h2>Member Infraction Tracking</h2>
+      <p>Infraction amounts are recorded in USD.</p>
 
       {/* Search */}
       <input
         type="text"
         className="search-bar"
-        placeholder="Search by ID or First Name..."
+        placeholder="Search by member number or first name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <div style={{ overflowX: "auto", marginTop: "15px" }}>
+      {isLoading ? (
+        <p role="status">Loading infraction records...</p>
+      ) : (
+      <>
+        {savingCell !== null && <p role="status">Saving infraction amount...</p>}
+        <div className="table-scroll-wrapper" style={{ marginTop: "15px" }}>
         <table
           border="1"
           cellPadding="8"
@@ -112,7 +132,7 @@ const Infractions = ({ rows, setRows, readOnly = false }) => {
           <tbody>
             {filteredRows.map((row) => (
               <tr key={row.id}>
-                <td>{row.id}</td>
+                <td>{row.member_number ?? row.id}</td>
                 <td>{row.First_Name}</td>
                 <td>{row.Last_Name}</td>
 
@@ -123,23 +143,44 @@ const Infractions = ({ rows, setRows, readOnly = false }) => {
                     return (
                       <td key={field}>
                         {readOnly ? (
-                          row[field] || "-"
+                        row[field] === "" || row[field] == null
+                          ? "-"
+                          : formatCurrency(row[field])
                         ) : (
-                          <input
-                            type="text"
-                            className="custom-input"
-                            min="0"
-                            step="1"
-                            value={row[field]}
-                            style={{ width: "65px" }}
-                            onChange={(e) =>
-                              handleChange(
-                                row.id,
+                        <input
+                          type="number"
+                          className="custom-input"
+                          min="0"
+                          step="0.01"
+                          placeholder="0.00"
+                          value={row[field]}
+                          style={{ width: "88px" }}
+                          disabled={savingCell !== null}
+                          onChange={(e) =>
+                            handleChange(
+                              row.id,
                                 month,
                                 category,
                                 e.target.value,
                               )
                             }
+                            onFocus={(event) => {
+                              event.currentTarget.dataset.originalValue =
+                                event.currentTarget.value;
+                            }}
+                            onBlur={(event) => {
+                              if (
+                                event.currentTarget.value !==
+                                event.currentTarget.dataset.originalValue
+                              ) {
+                                onSaveInfraction?.({
+                                  memberId: row.member_id,
+                                  field,
+                                  value: event.currentTarget.value,
+                                });
+                              }
+                            }}
+                            aria-label={`${month} ${category} dollar amount for ${row.First_Name} ${row.Last_Name}`}
                           />
                         )}
                       </td>
@@ -149,7 +190,7 @@ const Infractions = ({ rows, setRows, readOnly = false }) => {
 
                 {/* MEMBER TOTAL */}
                 <td>
-                  <strong>{calculateTotal(row)}</strong>
+                  <strong>{formatCurrency(calculateTotal(row))}</strong>
                 </td>
               </tr>
             ))}
@@ -169,16 +210,18 @@ const Infractions = ({ rows, setRows, readOnly = false }) => {
               {months.map((month) =>
                 categories.map((category) => (
                   <th key={`${month}_${category}`}>
-                    {calculateMonthlyTotal(month, category)}
+                    {formatCurrency(calculateMonthlyTotal(month, category))}
                   </th>
                 )),
               )}
 
-              <th>{grandTotal}</th>
+              <th>{formatCurrency(grandTotal)}</th>
             </tr>
           </tfoot>
         </table>
-      </div>
+        </div>
+      </>
+      )}
     </div>
   );
 };

@@ -28,6 +28,7 @@ const permissionRules = {
     view: ["member", "board"],
     add: ["board"],
     edit: ["board"],
+    delete: ["board"],
   },
   "ruling-schedule": {
     view: ["member", "board"],

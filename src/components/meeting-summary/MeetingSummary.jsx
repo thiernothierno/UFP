@@ -1,8 +1,8 @@
-import { useState } from "react";
-import initialMeetings from "../../data/meetings";
+import { useEffect, useState } from "react";
 import MeetingSummaryForm from "./MeetingSummaryForm";
 import { can } from "../../data/userPermission";
 import { useMember } from "../member-home-page/MemberContext";
+import supabase from "../../lib/supabase";
 import "./meetingSummary.css";
 
 const months = [
@@ -24,69 +24,152 @@ function MeetingSummary() {
   const member = useMember();
   const canAdd = can(member.role, "add", "meeting-summary");
   const canEdit = can(member.role, "edit", "meeting-summary");
-  const [meetings, setMeetings] = useState(initialMeetings);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [currentYear] = useState(() => new Date().getFullYear());
+  const [summaries, setSummaries] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+  const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [editingMeeting, setEditingMeeting] = useState(null);
+  const [editingSummary, setEditingSummary] = useState(null);
+  const [saveError, setSaveError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
 
-  const now = new Date();
-  const currentYear = now.getFullYear();
+  useEffect(() => {
+    let isCurrent = true;
 
-  const selectedMeeting = meetings.find(
-    (meeting) =>
-      meeting.year === selectedYear && meeting.month === selectedMonth,
+    const loadSummaries = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("meeting_summaries")
+          .select("id, summary_year, summary_month, details, created_at")
+          .order("summary_year", { ascending: false })
+          .order("summary_month", { ascending: false });
+
+        if (error) {
+          if (isCurrent) setLoadError(error.message);
+          return;
+        }
+
+        if (isCurrent) {
+          setSummaries(
+            data.map((summary) => ({
+              ...summary,
+              year: summary.summary_year,
+              month: summary.summary_month,
+            })),
+          );
+        }
+      } catch (error) {
+        if (isCurrent) {
+          setLoadError(
+            error instanceof Error
+              ? error.message
+              : "An unexpected error occurred while loading meeting summaries.",
+          );
+        }
+      } finally {
+        if (isCurrent) setIsLoading(false);
+      }
+    };
+
+    loadSummaries();
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
+
+  const selectedSummary = summaries.find(
+    (summary) =>
+      summary.year === selectedYear && summary.month === selectedMonth,
   );
 
-  const handleSave = (updatedMeeting) => {
-    if (editingMeeting ? !canEdit : !canAdd) return;
+  const handleSave = async (summaryData) => {
+    if (editingSummary ? !canEdit : !canAdd) return;
 
-    if (editingMeeting) {
-      setMeetings((prevMeetings) =>
-        prevMeetings.map((meeting) =>
-          meeting.id === updatedMeeting.id ? updatedMeeting : meeting,
-        ),
+    setSaveError("");
+    setIsSaving(true);
+
+    try {
+      const values = {
+        summary_year: selectedYear,
+        summary_month: selectedMonth,
+        details: summaryData.details,
+      };
+      const query = editingSummary
+        ? supabase
+            .from("meeting_summaries")
+            .update(values)
+            .eq("id", editingSummary.id)
+        : supabase.from("meeting_summaries").insert(values);
+      const { data: savedSummary, error } = await query
+        .select("id, summary_year, summary_month, details, created_at")
+        .single();
+
+      if (error) {
+        setSaveError(error.message);
+        return;
+      }
+
+      const normalizedSummary = {
+        ...savedSummary,
+        year: savedSummary.summary_year,
+        month: savedSummary.summary_month,
+      };
+
+      setSummaries((previousSummaries) =>
+        editingSummary
+          ? previousSummaries.map((summary) =>
+              summary.id === normalizedSummary.id ? normalizedSummary : summary,
+            )
+          : [...previousSummaries, normalizedSummary],
       );
-    } else {
-      setMeetings((prevMeetings) => [...prevMeetings, updatedMeeting]);
+      setShowForm(false);
+      setEditingSummary(null);
+    } catch (error) {
+      setSaveError(
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred while saving the meeting summary.",
+      );
+    } finally {
+      setIsSaving(false);
     }
-
-    setShowForm(false);
-    setEditingMeeting(null);
   };
 
   const handleEdit = () => {
-    if (!canEdit || !selectedMeeting) return;
+    if (!canEdit || !selectedSummary) return;
 
-    setEditingMeeting(selectedMeeting);
+    setSaveError("");
+    setEditingSummary(selectedSummary);
     setShowForm(true);
   };
 
-  //   const handleDelete = () => {
-  //     const confirmed = window.confirm(
-  //       "Are you sure you want to delete this meeting?",
-  //     );
-
-  //     if (confirmed) {
-  //       setMeetings((prevMeetings) =>
-  //         prevMeetings.filter((meeting) => meeting.id !== selectedMeeting.id),
-  //       );
-  //     }
-  //   };
+  const handleCancel = () => {
+    setShowForm(false);
+    setEditingSummary(null);
+    setSaveError("");
+  };
 
   return (
     <div className="meetings-container">
       <h2 className="meetings-title">Meeting Summary</h2>
+      {loadError && (
+        <p role="alert">Could not load meeting summaries: {loadError}</p>
+      )}
 
       <div className="meetings-year">
-        <label>Select Year:</label>
-
+        <label htmlFor="summary-year">Select Year:</label>
         <select
+          id="summary-year"
           value={selectedYear}
-          onChange={(e) => {
-            setSelectedYear(Number(e.target.value));
+          onChange={(event) => {
+            setSelectedYear(Number(event.target.value));
             setSelectedMonth(null);
             setShowForm(false);
+            setEditingSummary(null);
+            setSaveError("");
           }}
         >
           {[
@@ -115,6 +198,8 @@ function MeetingSummary() {
             onClick={() => {
               setSelectedMonth(index + 1);
               setShowForm(false);
+              setEditingSummary(null);
+              setSaveError("");
             }}
           >
             {month}
@@ -125,28 +210,16 @@ function MeetingSummary() {
       {selectedMonth !== null && (
         <div className="meeting-details">
           <h3>
-            {months[selectedMonth - 1]} {selectedYear} Meeting's Summary
+            {months[selectedMonth - 1]} {selectedYear} Meeting Summary
           </h3>
 
-          {selectedMeeting ? (
+          {isLoading ? (
+            <p role="status">Loading meeting summaries...</p>
+          ) : loadError ? null : selectedSummary ? (
             <div className="meeting-card">
-              {/* <p>
-                <strong>Date:</strong> {selectedMeeting.meetingDate}
-              </p>
-
-              <p>
-                <strong>Time:</strong> {selectedMeeting.startTime}
-              </p>
-
-              <p>
-                <strong>Location:</strong> {selectedMeeting.location}
-              </p> */}
-
-              {/* <h4>Meeting Summary:</h4> */}
-
               <ul className="meeting-bullet-list">
-                {selectedMeeting.details.map((detail, index) => (
-                  <li key={index}>{detail}</li>
+                {selectedSummary.details.map((detail, index) => (
+                  <li key={`${selectedSummary.id}-${index}`}>{detail}</li>
                 ))}
               </ul>
 
@@ -157,30 +230,36 @@ function MeetingSummary() {
               )}
             </div>
           ) : (
-            <p>No meeting details have been posted for this month.</p>
+            <p>No summary has been posted for this month.</p>
           )}
 
-          {canAdd && !selectedMeeting && !showForm && (
-            <button
-              onClick={() => {
-                setEditingMeeting(null);
-                setShowForm(true);
-              }}
-            >
-              + Add Summary
-            </button>
+          {saveError && (
+            <p role="alert">Could not save meeting summary: {saveError}</p>
           )}
+
+          {canAdd &&
+            !selectedSummary &&
+            !showForm &&
+            !isLoading &&
+            !loadError && (
+              <button
+                onClick={() => {
+                  setEditingSummary(null);
+                  setSaveError("");
+                  setShowForm(true);
+                }}
+              >
+                + Add Summary
+              </button>
+            )}
 
           {showForm && (
             <MeetingSummaryForm
-              year={selectedYear}
-              month={selectedMonth}
-              meeting={editingMeeting}
+              key={editingSummary?.id ?? `${selectedYear}-${selectedMonth}`}
+              meeting={editingSummary}
               onSave={handleSave}
-              onCancel={() => {
-                setShowForm(false);
-                setEditingMeeting(null);
-              }}
+              onCancel={handleCancel}
+              isSaving={isSaving}
             />
           )}
         </div>
