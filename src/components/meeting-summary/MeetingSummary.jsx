@@ -25,6 +25,7 @@ function MeetingSummary() {
   const canAdd = can(member.role, "add", "meeting-summary");
   const canEdit = can(member.role, "edit", "meeting-summary");
   const [currentYear] = useState(() => new Date().getFullYear());
+  const [currentMonth] = useState(() => new Date().getMonth() + 1);
   const [summaries, setSummaries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
@@ -190,17 +191,25 @@ function MeetingSummary() {
         {months.map((month, index) => (
           <button
             key={month}
-            className={
-              selectedMonth === index + 1
-                ? "month-button active"
-                : "month-button"
-            }
+            className={[
+              "month-button",
+              selectedMonth === index + 1 && "active",
+              selectedYear === currentYear && currentMonth === index + 1 &&
+                "current-month",
+            ]
+              .filter(Boolean)
+              .join(" ")}
             onClick={() => {
               setSelectedMonth(index + 1);
               setShowForm(false);
               setEditingSummary(null);
               setSaveError("");
             }}
+            aria-current={
+              selectedYear === currentYear && currentMonth === index + 1
+                ? "date"
+                : undefined
+            }
           >
             {month}
           </button>

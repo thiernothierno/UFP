@@ -32,6 +32,10 @@ td {
   background-color: bisque;
 }
 
+.payment-cell {
+  background-color: bisque;
+}
+
 /* search bar  */
 .search-bar {
   padding: 10px;

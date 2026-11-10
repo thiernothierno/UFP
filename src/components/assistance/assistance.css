@@ -78,7 +78,8 @@
 .assistance-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 280px));
-  gap: 12px;
+  gap: 8px;
+  width: 100%;
   margin-top: 15px;
   justify-content: start;
 }
@@ -88,9 +89,8 @@
   flex-direction: column;
   width: 100%;
   min-width: 0;
-  min-height: 170px;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ddd;
   border-radius: 6px;
   background-color: white;
@@ -98,26 +98,28 @@
 }
 
 .assistance-card h3 {
-  font-size: 15px;
-  margin: 0 0 8px;
+  font-size: 14px;
+  margin: 0 0 5px;
+  overflow-wrap: anywhere;
 }
 
 .assistance-card p {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.4;
+  margin: 4px 0;
   overflow-wrap: anywhere;
   flex-grow: 1;
 }
 
 .assistance-card small {
-  font-size: 11px;
+  font-size: 10px;
   color: #666;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .assistance-actions {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   margin-top: auto;
   padding-top: 10px;
 }
@@ -131,26 +133,6 @@
   background-color: dodgerblue;
   color: white;
   border-radius: 10px;
-}
-
-.assistance-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-width: 0;
-  min-height: 190px;
-  box-sizing: border-box;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background-color: white;
-  overflow-wrap: anywhere;
-}
-
-.assistance-card p {
-  flex-grow: 1;
-  overflow-wrap: anywhere;
-  line-height: 1.4;
 }
 /* For Tablets and small laptops */
 @media (max-width: 700px) {

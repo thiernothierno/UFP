@@ -93,7 +93,7 @@ const MonthlyPaymentTracking = ({
                   <td>{row.Last_Name}</td>
 
                   {months.map((month) => (
-                    <td key={month}>
+                    <td className={readOnly ? "payment-cell" : undefined} key={month}>
                       {readOnly ? (
                         row[month] === "" || row[month] == null
                           ? "-"

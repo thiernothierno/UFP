@@ -45,6 +45,12 @@
   font-weight: bold;
 }
 
+.month-button.current-month:not(.active) {
+  background-color: #fff4cc;
+  border-color: #d6a400;
+  font-weight: bold;
+}
+
 .meeting-details {
   margin-top: 25px;
   padding: 15px;

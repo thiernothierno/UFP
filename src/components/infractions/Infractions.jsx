@@ -141,7 +141,7 @@ const Infractions = ({
                     const field = `${month}_${category}`;
 
                     return (
-                      <td key={field}>
+                      <td className={readOnly ? "payment-cell" : undefined} key={field}>
                         {readOnly ? (
                         row[field] === "" || row[field] == null
                           ? "-"

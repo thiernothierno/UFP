@@ -4,6 +4,7 @@ h1 {
 
 /* Main header */
 .site-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,7 +54,9 @@ h1 {
 }
 
 .nav-center {
-  transform: translateX(-110px);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Right navigation */
@@ -63,7 +66,7 @@ h1 {
 }
 
 .nav-right {
-  transform: translateX(-30px);
+  transform: none;
 }
 
 .donate {
@@ -243,11 +246,21 @@ p {
   }
 
   .nav-center {
+    position: static;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     margin: 0;
+    transform: none;
+  }
+
+  .member-section {
+    justify-content: center;
+  }
+
+  .member-login {
+    transform: none;
   }
 
   .nav-right {
