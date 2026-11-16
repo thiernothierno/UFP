@@ -71,7 +71,8 @@
   transform: none;
 }
 
-.member-site-header .home-nav-bar li a {
+.member-site-header .home-nav-bar li a,
+.member-site-header .home-nav-bar li .dropbtn {
   padding: 12px 10px;
   font-size: 0.9rem;
 }

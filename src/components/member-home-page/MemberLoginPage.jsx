@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import EventsDropdown from "../navigation/EventsDropdown";
 
 const MemberLoginPage = () => {
   const { state } = useLocation();
@@ -25,15 +26,7 @@ const MemberLoginPage = () => {
               <Link to="/about">ABOUT</Link>
             </li>
 
-            <li className="dropdown">
-              <Link to="#" className="dropbtn">
-                EVENTS
-              </Link>
-              <div className="dropdown-content">
-                <Link to="/past-event">Past</Link>
-                <Link to="/upcoming-event">Upcoming</Link>
-              </div>
-            </li>
+            <EventsDropdown />
 
             <li>
               <Link to="/contact">CONTACT</Link>

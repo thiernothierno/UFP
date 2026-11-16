@@ -2,6 +2,10 @@
   margin: 40px;
 }
 
+h1 {
+  color: dodgerblue;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

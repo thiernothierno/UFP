@@ -16,6 +16,12 @@ const months = [
   "Y_fee",
 ];
 
+const formatCurrency = (amount) =>
+  Number(amount || 0).toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
 const MonthlyPaymentTracking = ({
   monthlyValues,
   setMonthlyValues,
@@ -59,7 +65,7 @@ const MonthlyPaymentTracking = ({
 
   return (
     <div>
-    <h2>Monthly Payment Tracking</h2>
+      <h2>Monthly Payment Tracking</h2>
       {/* Input search bar */}
       <input
         type="text"
@@ -93,11 +99,16 @@ const MonthlyPaymentTracking = ({
                   <td>{row.Last_Name}</td>
 
                   {months.map((month) => (
-                    <td className={readOnly ? "payment-cell" : undefined} key={month}>
+                    <td
+                      className={readOnly ? "payment-cell" : undefined}
+                      key={month}
+                    >
                       {readOnly ? (
-                        row[month] === "" || row[month] == null
-                          ? "-"
-                          : row[month]
+                        row[month] === "" || row[month] == null ? (
+                          "-"
+                        ) : (
+                          formatCurrency(row[month])
+                        )
                       ) : (
                         <input
                           type="number"
@@ -131,7 +142,7 @@ const MonthlyPaymentTracking = ({
                     </td>
                   ))}
                   <td>
-                    <strong>{calculateTotal(row)}</strong>
+                    <strong>{formatCurrency(calculateTotal(row))}</strong>
                   </td>
                 </tr>
               ))}
@@ -140,15 +151,17 @@ const MonthlyPaymentTracking = ({
 
                 {months.map((month) => (
                   <td key={month}>
-                    {monthlyValues.reduce(
-                      (sum, row) => sum + (Number(row[month]) || 0),
-                      0,
+                    {formatCurrency(
+                      monthlyValues.reduce(
+                        (sum, row) => sum + (Number(row[month]) || 0),
+                        0,
+                      ),
                     )}
                   </td>
                 ))}
 
                 <td>
-                  <strong>{grandTotal}</strong>
+                  <strong>{formatCurrency(grandTotal)}</strong>
                 </td>
               </tr>
               {filteredRows.length === 0 && (

@@ -1,5 +1,6 @@
 import "./home.css";
 import { Link } from "react-router-dom";
+import EventsDropdown from "../navigation/EventsDropdown";
 
 const Home = () => {
   const now = new Date();
@@ -11,7 +12,7 @@ const Home = () => {
       <div className="site-header">
         <div className="brand">
           <img src="/ufp-logo.jpg" alt="logo" width="100" height="100" />
-          <h1>UNION FOR PROGRESS</h1>
+          <span className="brand-name">UNION FOR PROGRESS</span>
         </div>
 
         <nav className="home-nav-bar">
@@ -23,15 +24,7 @@ const Home = () => {
               <Link to="/about">ABOUT</Link>
             </li>
 
-            <li className="dropdown">
-              <Link to="#" className="dropbtn">
-                EVENTS
-              </Link>
-              <div className="dropdown-content">
-                <Link to="/past-event">Past</Link>
-                <Link to="/upcoming-event">Upcoming</Link>
-              </div>
-            </li>
+            <EventsDropdown />
 
             <li>
               <Link to="/contact">CONTACT</Link>
@@ -50,19 +43,28 @@ const Home = () => {
 
       {/* Main content */}
       <main className="main-content">
-        {/* Your website content goes here */}
+        <section className="home-hero" aria-labelledby="home-headline">
+          <h2 id="home-headline">Building a stronger community, together.</h2>
+          <p>
+            Explore events open to members and visitors, learn about Union for
+            Progress, and find member resources and support.
+          </p>
+        </section>
+
         <div className="image-marquee">
           <div className="image-track">
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
-            <img src="/org1" alt="" />
+            <img src="/member-photo.jpeg" alt="" />
+            <img src="/member-photo1.jpeg" alt="" />
+            <img src="/barbecue-place.jpeg" alt="" />
+            <img src="/member-photo1.jpeg" alt="" />
+            <img src="/member-photo.jpeg" alt="" />
+            <img src="/barbecue-place.jpeg" alt="" />
+            <img src="/member-photo.jpeg" alt="" />
+            <img src="/member-photo1.jpeg" alt="" />
+            <img src="/barbecue-place.jpeg" alt="" />
+            <img src="/member-photo1.jpeg" alt="" />
+            <img src="/member-photo.jpeg" alt="" />
+            <img src="/barbecue-place.jpeg" alt="" />
           </div>
         </div>
 

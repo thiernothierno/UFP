@@ -52,6 +52,7 @@ td {
 
 /* search bar  */
 .search-bar {
+  margin-top: 20px;
   padding: 10px;
   background-color: bisque;
   color: black;

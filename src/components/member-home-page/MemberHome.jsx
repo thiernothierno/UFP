@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import SideBar from "./SideBar";
+import EventsDropdown from "../navigation/EventsDropdown";
 const MemberHome = ({ member }) => {
   const { pathname } = useLocation();
   const wideTablePage =
@@ -29,27 +30,27 @@ const MemberHome = ({ member }) => {
               <Link to="/user-login">HOME</Link>
             </li>
             <li>
-              <Link to="/about">ABOUT</Link>
+              <Link to="/about" state={{ memberView: true }}>
+                ABOUT
+              </Link>
             </li>
 
-            <li className="dropdown">
-              <Link to="#" className="dropbtn">
-                EVENTS
-              </Link>
-              <div className="dropdown-content">
-                <Link to="/past-event">Past</Link>
-                <Link to="/upcoming-event">Upcoming</Link>
-              </div>
-            </li>
+            <EventsDropdown memberNavState={{ memberView: true }} />
 
             <li>
-              <Link to="/contact">CONTACT</Link>
+              <Link to="/contact" state={{ memberView: true }}>
+                CONTACT
+              </Link>
             </li>
           </ul>
 
           <ul className="nav-right">
             <li>
-              <Link to="/donate" className="donate">
+              <Link
+                to="/donate"
+                className="donate"
+                state={{ memberView: true }}
+              >
                 DONATE
               </Link>
             </li>
