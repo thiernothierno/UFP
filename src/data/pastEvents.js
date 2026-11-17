@@ -19,6 +19,33 @@ const pastEvents = [
   },
   {
     id: "summer-community-gathering-2025",
+    date: "2022-08-16",
+    title: "Summer Community Gathering",
+    description:
+      "Neighbors came together for an afternoon of conversation, food, and community connection.",
+    image: "/member-photo.jpeg",
+    imageAlt: "Community members gathered together indoors",
+  },
+  {
+    id: "summer-community-gathering-2025",
+    date: "2021-08-16",
+    title: "Summer Community Gathering",
+    description:
+      "Neighbors came together for an afternoon of conversation, food, and community connection.",
+    image: "/member-photo.jpeg",
+    imageAlt: "Community members gathered together indoors",
+  },
+  {
+    id: "summer-community-gathering-2025",
+    date: "2026-08-16",
+    title: "Summer Community Gathering",
+    description:
+      "Neighbors came together for an afternoon of conversation, food, and community connection.",
+    image: "/member-photo.jpeg",
+    imageAlt: "Community members gathered together indoors",
+  },
+  {
+    id: "summer-community-gathering-2025",
     date: "2025-08-16",
     title: "Summer Community Gathering",
     description:
@@ -29,6 +56,15 @@ const pastEvents = [
   {
     id: "summer-community-gathering-2025",
     date: "2025-08-16",
+    title: "Summer Community Gathering",
+    description:
+      "Neighbors came together for an afternoon of conversation, food, and community connection.",
+    image: "/member-photo.jpeg",
+    imageAlt: "Community members gathered together indoors",
+  },
+  {
+    id: "summer-community-gathering-2025",
+    date: "2022-08-16",
     title: "Summer Community Gathering",
     description:
       "Neighbors came together for an afternoon of conversation, food, and community connection.",
@@ -55,7 +91,7 @@ const pastEvents = [
   },
   {
     id: "community-planning-meeting-2025",
-    date: "2025-03-22",
+    date: "2024-03-22",
     title: "Community Planning Meeting",
     description:
       "Members shared ideas and priorities for strengthening our community and planning future activities.",
@@ -64,7 +100,7 @@ const pastEvents = [
   },
   {
     id: "neighborhood-barbecue-2024",
-    date: "2024-07-13",
+    date: "2023-07-13",
     title: "Neighborhood Barbecue",
     description:
       "Families and neighbors enjoyed a summer get-together and made time to connect with one another.",

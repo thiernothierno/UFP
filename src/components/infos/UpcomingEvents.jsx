@@ -59,7 +59,7 @@ const UpcomingEvents = () => {
       <main className="main-content">
         {/* Your website content goes here */}
         <div class="about-grid">
-          <h2>No Event Posted Yet</h2>
+          <h2>No Upcomming Event Posted</h2>
         </div>
       </main>
 

@@ -43,13 +43,13 @@ const Home = () => {
 
       {/* Main content */}
       <main className="main-content">
-        <section className="home-hero" aria-labelledby="home-headline">
+        {/* <section className="home-hero" aria-labelledby="home-headline">
           <h2 id="home-headline">Building a stronger community, together.</h2>
           <p>
             Explore events open to members and visitors, learn about Union for
             Progress, and find member resources and support.
           </p>
-        </section>
+        </section> */}
 
         <div className="image-marquee">
           <div className="image-track">

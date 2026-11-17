@@ -81,9 +81,7 @@ const getErrorMessage = (error, fallback) => {
         ? ` ${error.details}`
         : "";
     const hint =
-      "hint" in error && typeof error.hint === "string"
-        ? ` ${error.hint}`
-        : "";
+      "hint" in error && typeof error.hint === "string" ? ` ${error.hint}` : "";
     return `${String(error.message)}${details}${hint}`;
   }
 
@@ -274,9 +272,7 @@ const PaymentStatus = () => {
         ...(previous[selectedYear] ?? createYearData()),
         infractions:
           typeof updater === "function"
-            ? updater(
-                (previous[selectedYear] ?? createYearData()).infractions,
-              )
+            ? updater((previous[selectedYear] ?? createYearData()).infractions)
             : updater,
       },
     }));
@@ -289,9 +285,7 @@ const PaymentStatus = () => {
         ...(previous[selectedYear] ?? createYearData()),
         payments:
           typeof updater === "function"
-            ? updater(
-                (previous[selectedYear] ?? createYearData()).payments,
-              )
+            ? updater((previous[selectedYear] ?? createYearData()).payments)
             : updater,
       },
     }));
@@ -513,13 +507,17 @@ const PaymentStatus = () => {
         value={selectedYear}
         onChange={handleYearChange}
       >
-        {[currentYear, currentYear + 1, currentYear + 2, currentYear + 3, currentYear + 4].map(
-          (year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ),
-        )}
+        {[
+          currentYear,
+          currentYear + 1,
+          currentYear + 2,
+          currentYear + 3,
+          currentYear + 4,
+        ].map((year) => (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        ))}
       </select>
 
       <hr />
@@ -559,9 +557,7 @@ const PaymentStatus = () => {
             </p>
           )}
           {infractionSaveError && (
-            <p role="alert">
-              Could not save infraction: {infractionSaveError}
-            </p>
+            <p role="alert">Could not save infraction: {infractionSaveError}</p>
           )}
           <InfractionsPage
             infractionRows={currentYearData.infractions}

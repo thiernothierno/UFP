@@ -32,6 +32,10 @@ const navigationItems = [
     links: [{ label: "Meeting-Summary", to: "/user-login/meeting-summary" }],
   },
   {
+    label: "Withdrawal",
+    links: [{ label: "Withdrawal", to: "/user-login/withdrawal" }],
+  },
+  {
     label: "Account",
     links: [],
   },
@@ -111,7 +115,11 @@ const SideBar = ({ member }) => {
               >
                 {label}
               </button>
-              <ul className="member-submenu" id={submenuId} hidden={!isExpanded}>
+              <ul
+                className="member-submenu"
+                id={submenuId}
+                hidden={!isExpanded}
+              >
                 {label === "Account" ? (
                   <>
                     {/* These details come from the authenticated user's active member profile. */}
@@ -147,38 +155,41 @@ const SideBar = ({ member }) => {
                   </>
                 ) : (
                   links.map(({ label: linkLabel, to }) => {
-                  const [path, query = ""] = (to ?? "").split("?");
-                  const isActive =
-                    Boolean(to) &&
-                    location.pathname === path &&
-                    location.search === (query ? `?${query}` : "");
+                    const [path, query = ""] = (to ?? "").split("?");
+                    const isActive =
+                      Boolean(to) &&
+                      location.pathname === path &&
+                      location.search === (query ? `?${query}` : "");
 
-                  return (
-                    <li key={linkLabel}>
-                      {to ? (
-                        <Link
-                          to={to}
-                          className={isActive ? "is-active" : undefined}
-                          aria-current={isActive ? "page" : undefined}
-                        >
-                          {linkLabel}
-                        </Link>
-                      ) : linkLabel === "Sign out" ? (
-                        <button
-                          className="sidebar-sign-out"
-                          type="button"
-                          onClick={handleSignOut}
-                          disabled={isSigningOut}
-                        >
-                          {isSigningOut ? "Signing out..." : linkLabel}
-                        </button>
-                      ) : (
-                        <span className="unavailable-link" aria-disabled="true">
-                          {linkLabel}
-                        </span>
-                      )}
-                    </li>
-                  );
+                    return (
+                      <li key={linkLabel}>
+                        {to ? (
+                          <Link
+                            to={to}
+                            className={isActive ? "is-active" : undefined}
+                            aria-current={isActive ? "page" : undefined}
+                          >
+                            {linkLabel}
+                          </Link>
+                        ) : linkLabel === "Sign out" ? (
+                          <button
+                            className="sidebar-sign-out"
+                            type="button"
+                            onClick={handleSignOut}
+                            disabled={isSigningOut}
+                          >
+                            {isSigningOut ? "Signing out..." : linkLabel}
+                          </button>
+                        ) : (
+                          <span
+                            className="unavailable-link"
+                            aria-disabled="true"
+                          >
+                            {linkLabel}
+                          </span>
+                        )}
+                      </li>
+                    );
                   })
                 )}
               </ul>

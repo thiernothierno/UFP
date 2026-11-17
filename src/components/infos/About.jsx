@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./about.css";
 import EventsDropdown from "../navigation/EventsDropdown";
+
 const About = () => {
   const { state } = useLocation();
   const isMemberView = state?.memberView === true;

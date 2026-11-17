@@ -18,6 +18,7 @@ import PublicHomeRoute from "./components/member-home-page/PublicHomeRoute";
 import ResetPassword from "./components/member-home-page/ResetPassword";
 import MeetingSummary from "./components/meeting-summary/MeetingSummary";
 import SetPassword from "./components/member-home-page/SetPassword";
+import WithdrawalManager from "./components/withdraw/WithdrawalManager";
 const App = () => {
   return (
     <BrowserRouter>
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="agenda" element={<AgendaSuggestion />} />
           <Route path="assistance" element={<Assistance />} />
           <Route path="meeting-summary" element={<MeetingSummary />} />
+          <Route path="withdrawal" element={<WithdrawalManager />} />
         </Route>
       </Routes>
     </BrowserRouter>
