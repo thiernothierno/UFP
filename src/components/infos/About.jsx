@@ -78,6 +78,18 @@ const About = () => {
         {/* Your website content goes here */}
         <div class="about-grid">
           <div class="about-item">
+            <h2>The story</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
+              velit laboriosam eum temporibus, autem, excepturi animi dolor
+              quibusdam culpa molestias, impedit natus suscipit consectetur iure
+              assumenda! Aperiam dolorem quidem corporis. Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Inventore deserunt aperiam
+              asperiores. Eius in accusantium omnis nobis deleniti? Alias neque
+              illum ut libero nostrum illo suscipit fugiat aut dolor nulla?
+            </p>
+          </div>
+          <div class="about-item">
             <h2>Who We Are</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur

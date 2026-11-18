@@ -23,7 +23,7 @@ const MemberHome = ({ member }) => {
       <div className="site-header member-site-header">
         <div className="brand">
           <img src="/ufp-logo.jpg" alt="logo" width="50" height="50" />
-          <h1>UNION FOR PROGRESS</h1>
+          <span className="brand-name">UNION FOR PROGRESS</span>
         </div>
 
         <nav className="home-nav-bar">
