@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./withdraw.css";
+import "./withdrawal.css";
 
 const fields = [
   { name: "date", label: "Date", type: "date" },
@@ -20,8 +20,10 @@ const WithdrawalForm = ({
   onUpdate,
   editingRecord,
   onCancelEdit,
+  isSaving = false,
+  saveError = "",
 }) => {
-  const [isAdding, setIsAdding] = useState(false);
+  const [isAdding, setIsAdding] = useState(true);
   const [values, setValues] = useState({ ...emptyValues });
   const [errors, setErrors] = useState({});
   const isFormVisible = isAdding || Boolean(editingRecord);
@@ -37,7 +39,7 @@ const WithdrawalForm = ({
       });
       setErrors({});
     } else {
-      setIsAdding(false);
+      setIsAdding(true);
       setValues({ ...emptyValues });
       setErrors({});
     }
@@ -89,7 +91,7 @@ const WithdrawalForm = ({
 
     if (editingRecord) {
       onUpdate(editingRecord.id, submittedRecord);
-      setIsAdding(false);
+      setIsAdding(true);
     } else {
       onSubmit(submittedRecord);
     }
@@ -99,7 +101,7 @@ const WithdrawalForm = ({
   }
 
   function handleCancelEdit() {
-    setIsAdding(false);
+    setIsAdding(true);
     setValues({ ...emptyValues });
     setErrors({});
     onCancelEdit();
@@ -107,47 +109,72 @@ const WithdrawalForm = ({
 
   return (
     <section className="withdraw">
+      <header className="withdraw-header">
+        <h1>Withdrawals</h1>
+        <p>Add a withdrawal or review the submitted records below.</p>
+      </header>
       <form noValidate onSubmit={handleSubmit}>
         {isFormVisible && (
           <div className="withdraw-table">
-            <table>
-              <tbody>
-                <tr>
-                  {fields.map(({ name, label, type }) => {
-                    const errorId = `withdraw-${name}-error`;
+            {fields.map(({ name, label, type }) => {
+              const errorId = `withdraw-${name}-error`;
 
-                    return (
-                      <td key={name}>
-                        <label htmlFor={`withdraw-${name}`}>{label}</label>
-                        <input
-                          id={`withdraw-${name}`}
-                          name={name}
-                          type={type}
-                          value={values[name]}
-                          onChange={handleChange}
-                          min={type === "number" ? "0.01" : undefined}
-                          step={type === "number" ? "0.01" : undefined}
-                          aria-invalid={Boolean(errors[name])}
-                          aria-describedby={errors[name] ? errorId : undefined}
-                        />
-                        {errors[name] && (
-                          <span className="withdraw-error" id={errorId}>
-                            {errors[name]}
-                          </span>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              </tbody>
-            </table>
+              return (
+                <div className="withdraw-field" key={name}>
+                  <label htmlFor={`withdraw-${name}`}>{label}</label>
+                  {name === "amount" ? (
+                    <div className="withdraw-amount-input">
+                      <span aria-hidden="true">$</span>
+                      <input
+                        id={`withdraw-${name}`}
+                        name={name}
+                        type={type}
+                        value={values[name]}
+                        onChange={handleChange}
+                        min="0.01"
+                        step="0.01"
+                        disabled={isSaving}
+                        aria-invalid={Boolean(errors[name])}
+                        aria-describedby={errors[name] ? errorId : undefined}
+                      />
+                    </div>
+                  ) : (
+                    <input
+                      id={`withdraw-${name}`}
+                      name={name}
+                      type={type}
+                      value={values[name]}
+                      onChange={handleChange}
+                      disabled={isSaving}
+                      aria-invalid={Boolean(errors[name])}
+                      aria-describedby={errors[name] ? errorId : undefined}
+                    />
+                  )}
+                  {errors[name] && (
+                    <span className="withdraw-error" id={errorId}>
+                      {errors[name]}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
+        )}
+
+        {saveError && (
+          <p role="alert" className="withdraw-save-error">
+            Could not save withdrawal: {saveError}
+          </p>
         )}
 
         <div className="withdraw-actions">
           {isFormVisible && (
-            <button type="submit">
-              {editingRecord ? "Save changes" : "Submit"}
+            <button type="submit" disabled={isSaving}>
+              {isSaving
+                ? "Saving..."
+                : editingRecord
+                  ? "Save changes"
+                  : "Add withdrawal"}
             </button>
           )}
           {editingRecord ? (
@@ -155,20 +182,11 @@ const WithdrawalForm = ({
               className="withdraw-secondary-button"
               type="button"
               onClick={handleCancelEdit}
+              disabled={isSaving}
             >
               Cancel
             </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => {
-                setIsAdding(true);
-                setErrors({});
-              }}
-            >
-              Add
-            </button>
-          )}
+          ) : null}
         </div>
       </form>
     </section>

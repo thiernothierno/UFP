@@ -52,7 +52,7 @@ const EventsDropdown = ({ memberNavState }) => {
         aria-controls={menuId}
         onClick={() => setIsOpen((open) => !open)}
       >
-        EVENTS
+        Events
       </button>
       <div
         className={`dropdown-content${isOpen ? " dropdown-content-open" : ""}`}

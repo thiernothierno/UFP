@@ -56,8 +56,13 @@ const permissionRules = {
     view: ["member", "board"],
     add: ["board"],
     edit: ["board"],
-
-  }
+  },
+  withdrawals: {
+    view: ["member", "board"],
+    add: ["board"],
+    edit: ["board"],
+    delete: ["board"],
+  },
 };
 
 export function can(role, action, resource, { userId, ownerId } = {}) {

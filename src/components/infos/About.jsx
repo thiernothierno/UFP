@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./about.css";
 import EventsDropdown from "../navigation/EventsDropdown";
+import { FiSearch } from "react-icons/fi";
 
 const About = () => {
   const { state } = useLocation();
@@ -18,9 +19,9 @@ const About = () => {
         }
       >
         <div className="brand">
-          <img src="/ufp-logo.jpg" alt="logo" width="100" height="100" />
+          <img src="/ufp-logo.jpg" alt="logo" width="50" height="50" />
           {isMemberView ? (
-            <h1>Union For Progress</h1>
+            <span className="brand-name">UNION FOR PROGRESS</span>
           ) : (
             <span className="brand-name">UNION FOR PROGRESS</span>
           )}
@@ -29,11 +30,11 @@ const About = () => {
         <nav className="home-nav-bar">
           <ul className="nav-center">
             <li>
-              <Link to={isMemberView ? "/user-login" : "/"}>HOME</Link>
+              <Link to={isMemberView ? "/user-login" : "/"}>Home</Link>
             </li>
             <li>
               <Link to="/about" state={memberNavState}>
-                ABOUT
+                About
               </Link>
             </li>
 
@@ -41,8 +42,24 @@ const About = () => {
 
             <li>
               <Link to="/contact" state={memberNavState}>
-                CONTACT
+                Contact
               </Link>
+            </li>
+            <li className="search-bar-item">
+              <form
+                className="search-bar"
+                role="search"
+                onSubmit={(event) => event.preventDefault()}
+              >
+                <input
+                  type="text"
+                  placeholder="Ask us anything about UFP"
+                  aria-label="Search UFP"
+                />
+                <button type="submit" aria-label="Search" title="Search">
+                  <FiSearch aria-hidden="true" />
+                </button>
+              </form>
             </li>
           </ul>
 
