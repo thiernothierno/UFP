@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import SideBar from "./SideBar";
-import EventsDropdown from "../navigation/EventsDropdown";
-import { FiSearch } from "react-icons/fi";
+import Header from "../navigation/Header";
+import Footer from "../navigation/Footer";
 
 const MemberHome = ({ member }) => {
   const { pathname } = useLocation();
@@ -14,67 +14,9 @@ const MemberHome = ({ member }) => {
     sidebarOverride?.pathname === pathname
       ? sidebarOverride.visible
       : !wideTablePage;
-  const now = new Date();
-  const year = now.getFullYear();
-
   return (
     <div className="page-container member-page-container">
-      {/* Header */}
-      <div className="site-header member-site-header">
-        <div className="brand">
-          <img src="/ufp-logo.jpg" alt="logo" width="50" height="50" />
-          <span className="brand-name">UNION FOR PROGRESS</span>
-        </div>
-
-        <nav className="home-nav-bar">
-          <ul className="nav-center">
-            <li>
-              <Link to="/user-login">Home</Link>
-            </li>
-            <li>
-              <Link to="/about" state={{ memberView: true }}>
-                About
-              </Link>
-            </li>
-
-            <EventsDropdown memberNavState={{ memberView: true }} />
-
-            <li>
-              <Link to="/contact" state={{ memberView: true }}>
-                Contact
-              </Link>
-            </li>
-            <li className="search-bar-item">
-              <form
-                className="search-bar"
-                role="search"
-                onSubmit={(event) => event.preventDefault()}
-              >
-                <input
-                  type="text"
-                  placeholder="Ask us anything about UFP"
-                  aria-label="Search UFP"
-                />
-                <button type="submit" aria-label="Search" title="Search">
-                  <FiSearch aria-hidden="true" />
-                </button>
-              </form>
-            </li>
-          </ul>
-
-          <ul className="nav-right">
-            <li>
-              <Link
-                to="/donate"
-                className="donate"
-                state={{ memberView: true }}
-              >
-                DONATE
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <Header isMemberView />
 
       {/* Main content */}
       <main
@@ -103,10 +45,7 @@ const MemberHome = ({ member }) => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <p>© {year} UFP. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

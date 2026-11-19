@@ -3,8 +3,22 @@ body {
   margin: 50px;
 }
 
+.page-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: calc(100vh - 100px);
+}
+
+.main-content {
+  min-width: 0;
+}
+
 @media (max-width: 700px) {
   body {
     margin: 0;
+  }
+
+  .page-container {
+    min-height: 100vh;
   }
 }
