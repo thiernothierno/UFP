@@ -1,23 +1,32 @@
 /* MemberHomePage  */
-table {
+.payment-table {
   width: 100%;
-}
-table,
-th,
-td {
-  border: 1px solid black;
   border-collapse: collapse;
-  text-align: center;
-}
-
-th,
-td {
-  padding: 10px;
 }
 
 .table-scroll-wrapper {
   max-height: 60vh;
   overflow: auto;
+}
+
+.payment-table th,
+.payment-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.payment-table tbody tr:nth-child(even):not(.payment-total-row) {
+  background-color: #e0f7fa;
+}
+
+.payment-table tbody tr:nth-child(odd):not(.payment-total-row) {
+  background-color: white;
+}
+
+.payment-table th {
+  background-color: #006064;
+  color: white;
 }
 
 .payment-table-wrapper {
@@ -33,7 +42,7 @@ td {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-sizing: border-box;
-  background-color: bisque;
+  background-color: transparent;
 }
 
 .payment-table {
@@ -47,7 +56,13 @@ td {
 }
 
 .payment-cell {
-  background-color: bisque;
+  background-color: transparent;
+}
+
+.payment-table .payment-total-row {
+  background-color: #006064;
+  color: white;
+  font-weight: 600;
 }
 
 /* search bar  */

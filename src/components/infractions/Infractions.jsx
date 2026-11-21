@@ -213,7 +213,7 @@ const Infractions = ({
               {/* TABLE FOOTER */}
               <tfoot>
                 <tr>
-                  <th colSpan="3">All Members - Monthly Totals</th>
+                  <th colSpan="3">All Members - Infraction Totals</th>
 
                   {months.map((month) =>
                     categories.map((category) => (

@@ -100,11 +100,16 @@ html[data-theme="dark"] .add-assistance-button,
 html[data-theme="dark"] .add-rules,
 html[data-theme="dark"] .back-to-rules,
 html[data-theme="dark"] .rules-category,
-html[data-theme="dark"] .custom-input,
-html[data-theme="dark"] .payment-cell,
 html[data-theme="dark"] .month-button.current-month:not(.active) {
   border-color: var(--theme-border);
   background-color: var(--theme-surface-raised);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .payment-table .custom-input,
+html[data-theme="dark"] .infraction-table .custom-input {
+  border-color: var(--theme-border);
+  background-color: transparent;
   color: var(--theme-text);
 }
 
@@ -174,10 +179,24 @@ html[data-theme="dark"] .withdraw-empty {
 }
 
 html[data-theme="dark"] .withdraw-summary div,
-html[data-theme="dark"] .withdraw-record-heading,
 html[data-theme="dark"] .withdraw-record-row:nth-child(even) {
   border-color: var(--theme-border);
-  background-color: var(--theme-surface-raised);
+  background-color: var(--theme-surface);
+}
+
+html[data-theme="dark"] .withdraw-record-row:nth-child(odd) {
+  border-color: var(--theme-border);
+  background-color: #203746;
+}
+
+html[data-theme="dark"] .withdraw-record-heading {
+  border-color: var(--theme-border);
+  background-color: #164b51;
+  color: white;
+}
+
+html[data-theme="dark"] .withdraw-records-grid {
+  border-color: var(--theme-border);
 }
 
 html[data-theme="dark"] .withdraw-amount-input,
@@ -274,16 +293,24 @@ html[data-theme="dark"] td {
   border-color: var(--theme-border);
 }
 
-html[data-theme="dark"] .summary-table tr:nth-child(even) {
+html[data-theme="dark"] .summary-table tr:nth-child(even),
+html[data-theme="dark"] .payment-table tbody tr:nth-child(even):not(.payment-total-row),
+html[data-theme="dark"] .infraction-table tbody tr:nth-child(even) {
   background-color: #203746;
 }
 
-html[data-theme="dark"] .summary-table tr:nth-child(odd) {
+html[data-theme="dark"] .summary-table tr:nth-child(odd),
+html[data-theme="dark"] .payment-table tbody tr:nth-child(odd):not(.payment-total-row),
+html[data-theme="dark"] .infraction-table tbody tr:nth-child(odd) {
   background-color: var(--theme-surface);
 }
 
-html[data-theme="dark"] .summary-table th {
+html[data-theme="dark"] .summary-table th,
+html[data-theme="dark"] .payment-table th,
+html[data-theme="dark"] .infraction-table th,
+html[data-theme="dark"] .payment-table .payment-total-row {
   background-color: #164b51;
+  color: white;
 }
 
 html[data-theme="dark"] .board-label,

@@ -1,23 +1,32 @@
 /* MemberHomePage  */
-table {
+.infraction-table {
   width: 100%;
-}
-table,
-th,
-td {
-  border: 1px solid black;
   border-collapse: collapse;
-  text-align: center;
-}
-
-th,
-td {
-  padding: 10px;
 }
 
 .table-scroll-wrapper {
   max-height: 60vh;
   overflow: auto;
+}
+
+.infraction-table th,
+.infraction-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.infraction-table tbody tr:nth-child(even) {
+  background-color: #e0f7fa;
+}
+
+.infraction-table tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+.infraction-table th {
+  background-color: #006064;
+  color: white;
 }
 
 .infraction-table {
@@ -34,11 +43,7 @@ td {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-sizing: border-box;
-  background-color: bisque;
-}
-
-.payment-cell {
-  background-color: bisque;
+  background-color: transparent;
 }
 
 /* search bar  */

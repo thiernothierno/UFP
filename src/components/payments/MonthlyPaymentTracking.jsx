@@ -146,7 +146,7 @@ const MonthlyPaymentTracking = ({
                   </td>
                 </tr>
               ))}
-              <tr>
+              <tr className="payment-total-row">
                 <td colSpan="3">Grand Total</td>
 
                 {months.map((month) => (
