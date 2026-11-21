@@ -194,7 +194,8 @@ function MeetingSummary() {
             className={[
               "month-button",
               selectedMonth === index + 1 && "active",
-              selectedYear === currentYear && currentMonth === index + 1 &&
+              selectedYear === currentYear &&
+                currentMonth === index + 1 &&
                 "current-month",
             ]
               .filter(Boolean)

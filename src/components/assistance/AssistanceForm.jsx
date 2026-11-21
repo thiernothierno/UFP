@@ -1,11 +1,6 @@
 import { useState } from "react";
 
-const AssistanceForm = ({
-  post,
-  onSave,
-  onCancel,
-  isSaving = false,
-}) => {
+const AssistanceForm = ({ post, onSave, onCancel, isSaving = false }) => {
   const [title, setTitle] = useState(post?.title || "");
   const [description, setDescription] = useState(post?.description || "");
 

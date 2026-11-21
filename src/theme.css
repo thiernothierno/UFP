@@ -58,6 +58,7 @@ html[data-theme="dark"] .home-button--join:hover {
 }
 
 html[data-theme="dark"] .contact-item,
+html[data-theme="dark"] .contact-form,
 html[data-theme="dark"] .agenda-form,
 html[data-theme="dark"] .agenda-card,
 html[data-theme="dark"] .assistance-form,
@@ -80,6 +81,18 @@ html[data-theme="dark"] .withdraw-record-row {
   border-color: var(--theme-border);
   background-color: var(--theme-surface);
   color: var(--theme-text);
+}
+
+html[data-theme="dark"] .contact-form [role="alert"] {
+  border-color: #713b43;
+  background-color: #4c292e;
+  color: #ffb4b4;
+}
+
+html[data-theme="dark"] .contact-form [role="status"] {
+  border-color: #356a4a;
+  background-color: #203d31;
+  color: #b9e7c6;
 }
 
 html[data-theme="dark"] .add-agenda-button,

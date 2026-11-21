@@ -54,7 +54,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form className="assistance-form" onSubmit={handleSubmit}>
+    <form className="contact-form" onSubmit={handleSubmit}>
       <label htmlFor="contact-first-name">First Name</label>
       <input
         id="contact-first-name"
@@ -114,10 +114,12 @@ const ContactForm = () => {
         <p role="alert">Could not send your message: {submitError}</p>
       )}
       {isSubmitted && (
-        <p role="status">Your message has been sent. Thank you for contacting us.</p>
+        <p role="status">
+          Your message has been sent. Thank you for contacting us.
+        </p>
       )}
 
-      <div className="assistance-form-buttons">
+      <div className="contact-form-buttons">
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Sending..." : "Submit"}
         </button>

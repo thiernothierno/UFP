@@ -38,19 +38,106 @@
   color: #555;
 }
 
-.contact-layout .assistance-form {
+.contact-layout .contact-form {
   width: 100%;
   max-width: none;
   margin: 0;
 }
 
-.assistance-form button {
+.contact-form {
+  width: 100%; /* 1. Forces the form to stretch across flex parents */
+  max-width: 600px; /* 2. Caps it at exactly 600px */
+  margin: 20px auto; /* 3. Uses 'auto' to keep the box centered on the page */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 8%);
+  box-sizing: border-box; /* 4. Ensures padding doesn't distort the 600px width */
+}
+
+.contact-form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font: inherit;
+}
+
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  border-color: dodgerblue;
+  outline: 3px solid rgb(30 144 255 / 25%);
+  outline-offset: 1px;
+}
+
+.contact-form-buttons button {
+  min-height: 42px;
+  border: 0;
   background-color: darkgreen;
   padding: 10px 20px;
   color: white;
   border-radius: 10px;
   font-size: 15px;
+  cursor: pointer;
+  transition: background-color 160ms ease;
 }
+
+.contact-form-buttons button:hover:not(:disabled) {
+  background-color: #075107;
+}
+
+.contact-form-buttons button:focus-visible {
+  outline: 3px solid rgb(30 144 255 / 40%);
+  outline-offset: 2px;
+}
+
+.contact-form-buttons button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.contact-form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.contact-form [role="alert"],
+.contact-form [role="status"] {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 1px solid;
+  border-radius: 6px;
+  line-height: 1.4;
+}
+
+.contact-form [role="alert"] {
+  border-color: #e3a5a5;
+  background-color: #fff0f0;
+  color: #8b1e1e;
+}
+
+.contact-form [role="status"] {
+  border-color: #9ac9a5;
+  background-color: #edf7ef;
+  color: #245c32;
+}
+
 @media (max-width: 700px) {
   .contact-layout {
     grid-template-columns: 1fr;

@@ -42,7 +42,7 @@ const MonthlyPaymentTracking = ({
     );
   };
 
-  // function that calculate the total amount paid by each member
+  // function that calculate the total amount owned by each member
   const calculateTotal = (row) => {
     return months.reduce((total, month) => {
       return total + (Number(row[month]) || 0);

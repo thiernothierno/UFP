@@ -283,9 +283,7 @@ const Assistance = () => {
               <div className="assistance-card" key={post.id}>
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
-                <small>
-                  Posted by: {post.ownerName || "Unknown member"}
-                </small>
+                <small>Posted by: {post.ownerName || "Unknown member"}</small>
                 <small>
                   Date posted:{" "}
                   {post.datePosted
