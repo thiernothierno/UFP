@@ -13,10 +13,10 @@ const About = () => {
 
       {/* Main content */}
       <main className="main-content">
-        {/* Your website content goes here */}
+        {/* website content goes here */}
         <div className="about-grid">
           <div className="about-item">
-            <h2>The story</h2>
+            <h2>The Story</h2>
             <div className="about-item-content">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.

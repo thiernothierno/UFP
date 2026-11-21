@@ -1,0 +1,28 @@
+import { useLayoutEffect, useState } from "react";
+import { ThemeContext } from "./themeContext";
+const THEME_STORAGE_KEY = "ufp-theme";
+
+function getInitialTheme() {
+  return window.localStorage.getItem(THEME_STORAGE_KEY) === "dark"
+    ? "dark"
+    : "light";
+}
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useLayoutEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};

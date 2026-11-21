@@ -1,8 +1,9 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./eventsDropdown.css";
 
 const EventsDropdown = ({ memberNavState }) => {
+  const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const triggerRef = useRef(null);
@@ -46,7 +47,11 @@ const EventsDropdown = ({ memberNavState }) => {
     >
       <button
         ref={triggerRef}
-        className="dropbtn"
+        className={`dropbtn${
+          pathname === "/past-event" || pathname === "/upcoming-event"
+            ? " is-active"
+            : ""
+        }`}
         type="button"
         aria-expanded={isOpen}
         aria-controls={menuId}
@@ -58,10 +63,20 @@ const EventsDropdown = ({ memberNavState }) => {
         className={`dropdown-content${isOpen ? " dropdown-content-open" : ""}`}
         id={menuId}
       >
-        <Link to="/past-event" state={memberNavState} onClick={closeMenu}>
+        <Link
+          to="/past-event"
+          state={memberNavState}
+          aria-current={pathname === "/past-event" ? "page" : undefined}
+          onClick={closeMenu}
+        >
           Past
         </Link>
-        <Link to="/upcoming-event" state={memberNavState} onClick={closeMenu}>
+        <Link
+          to="/upcoming-event"
+          state={memberNavState}
+          aria-current={pathname === "/upcoming-event" ? "page" : undefined}
+          onClick={closeMenu}
+        >
           Upcoming
         </Link>
       </div>

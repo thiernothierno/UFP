@@ -69,8 +69,12 @@
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: dodgerblue;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
 }
-
 .assistance-posts {
   margin-top: 30px;
 }

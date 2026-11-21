@@ -1,0 +1,288 @@
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --theme-page: #111827;
+  --theme-surface: #1f2937;
+  --theme-surface-raised: #273449;
+  --theme-border: #3b4658;
+  --theme-text: #e5e7eb;
+  --theme-muted: #aeb9c8;
+}
+
+html[data-theme="dark"] body {
+  background-color: var(--theme-page);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .page-container > .site-header {
+  border-color: var(--theme-border);
+  background-color: var(--theme-surface);
+}
+
+html[data-theme="dark"] .dropdown-content {
+  background-color: var(--theme-surface);
+}
+
+html[data-theme="dark"] .dropdown-content a {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .dropdown-content a:hover,
+html[data-theme="dark"] .dropdown-content a:focus-visible {
+  background-color: var(--theme-surface-raised);
+}
+
+html[data-theme="dark"] .header-search-bar,
+html[data-theme="dark"] .header-search-bar input {
+  border-color: var(--theme-border);
+  background-color: var(--theme-surface);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .home-copy p,
+html[data-theme="dark"] .contact-item svg,
+html[data-theme="dark"] .agenda-card small,
+html[data-theme="dark"] .assistance-card small,
+html[data-theme="dark"] .rule-card small {
+  color: var(--theme-muted);
+}
+
+html[data-theme="dark"] .home-button--join {
+  border-color: #72b889;
+  background-color: var(--theme-surface);
+  color: #a7e0b7;
+}
+
+html[data-theme="dark"] .home-button--join:hover {
+  background-color: var(--theme-surface-raised);
+}
+
+html[data-theme="dark"] .contact-item,
+html[data-theme="dark"] .agenda-form,
+html[data-theme="dark"] .agenda-card,
+html[data-theme="dark"] .assistance-form,
+html[data-theme="dark"] .assistance-card,
+html[data-theme="dark"] .rule-card,
+html[data-theme="dark"] .rule-form,
+html[data-theme="dark"] .month-button,
+html[data-theme="dark"] .meeting-details,
+html[data-theme="dark"] .meeting-form,
+html[data-theme="dark"] .group-column,
+html[data-theme="dark"] .past-events-year-panel,
+html[data-theme="dark"] .past-events-results-card,
+html[data-theme="dark"] .past-event-card,
+html[data-theme="dark"] .member-sidebar,
+html[data-theme="dark"] .member-content,
+html[data-theme="dark"] .member-sidebar-toggle,
+html[data-theme="dark"] .withdraw,
+html[data-theme="dark"] .withdraw-records,
+html[data-theme="dark"] .withdraw-record-row {
+  border-color: var(--theme-border);
+  background-color: var(--theme-surface);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .add-agenda-button,
+html[data-theme="dark"] .add-assistance-button,
+html[data-theme="dark"] .add-rules,
+html[data-theme="dark"] .back-to-rules,
+html[data-theme="dark"] .rules-category,
+html[data-theme="dark"] .custom-input,
+html[data-theme="dark"] .payment-cell,
+html[data-theme="dark"] .month-button.current-month:not(.active) {
+  border-color: var(--theme-border);
+  background-color: var(--theme-surface-raised);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .month-button.active {
+  border-color: #6198ce;
+  background-color: #25415f;
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .group-column.active {
+  border-color: #4a9d68;
+  background-color: #203d31;
+}
+
+html[data-theme="dark"] .member-sidebar .sidebar-heading,
+html[data-theme="dark"] .member-profile p,
+html[data-theme="dark"] .member-submenu a,
+html[data-theme="dark"] .member-submenu .unavailable-link,
+html[data-theme="dark"] .member-submenu .sidebar-sign-out,
+html[data-theme="dark"] .member-sidebar-toggle,
+html[data-theme="dark"] .member-profile strong,
+html[data-theme="dark"] .member-sidebar .navigation-toggle {
+  color: var(--theme-muted);
+}
+
+html[data-theme="dark"] .member-sidebar .navigation-toggle:hover,
+html[data-theme="dark"] .member-sidebar .navigation-toggle:focus-visible,
+html[data-theme="dark"] .member-sidebar .navigation-toggle[aria-expanded="true"],
+html[data-theme="dark"] .member-sidebar .navigation-toggle.has-active-link,
+html[data-theme="dark"] .member-submenu a:hover,
+html[data-theme="dark"] .member-submenu a.is-active,
+html[data-theme="dark"] .member-submenu .sidebar-sign-out:hover,
+html[data-theme="dark"] .member-submenu .sidebar-sign-out:focus-visible,
+html[data-theme="dark"] .member-sidebar-toggle:hover,
+html[data-theme="dark"] .member-sidebar-toggle:focus-visible {
+  background-color: #263a5b;
+  color: #a9c5ff;
+}
+
+html[data-theme="dark"] .member-sidebar .navigation-toggle::before {
+  color: var(--theme-muted);
+}
+
+html[data-theme="dark"] .member-profile p + p {
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .member-submenu .unavailable-link {
+  color: #8290a8;
+}
+
+html[data-theme="dark"] .withdraw-header h1,
+html[data-theme="dark"] .withdraw-records h2,
+html[data-theme="dark"] .withdraw-table label,
+html[data-theme="dark"] .withdraw-year-filter,
+html[data-theme="dark"] .withdraw-summary strong,
+html[data-theme="dark"] .withdraw-empty strong,
+html[data-theme="dark"] .withdraw-record-heading,
+html[data-theme="dark"] .withdraw-record-row > span::before {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .withdraw-header p,
+html[data-theme="dark"] .withdraw-summary span,
+html[data-theme="dark"] .withdraw-empty {
+  color: var(--theme-muted);
+}
+
+html[data-theme="dark"] .withdraw-summary div,
+html[data-theme="dark"] .withdraw-record-heading,
+html[data-theme="dark"] .withdraw-record-row:nth-child(even) {
+  border-color: var(--theme-border);
+  background-color: var(--theme-surface-raised);
+}
+
+html[data-theme="dark"] .withdraw-amount-input,
+html[data-theme="dark"] .withdraw-year-filter select,
+html[data-theme="dark"] .withdraw-table input {
+  border-color: var(--theme-border);
+  background-color: var(--theme-page);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .withdraw-amount-input span {
+  border-color: var(--theme-border);
+  color: var(--theme-muted);
+}
+
+html[data-theme="dark"] .withdraw-actions .withdraw-secondary-button {
+  background-color: var(--theme-surface-raised);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .withdraw-actions .withdraw-secondary-button:hover {
+  background-color: #34445c;
+}
+
+html[data-theme="dark"] .withdraw-edit-button {
+  background-color: #263a5b;
+  color: #a9c5ff;
+}
+
+html[data-theme="dark"] .withdraw-edit-button:hover {
+  background-color: #344b70;
+}
+
+html[data-theme="dark"] .withdraw-delete-button {
+  background-color: #4c292e;
+  color: #ffb4b4;
+}
+
+html[data-theme="dark"] .withdraw-delete-button:hover {
+  background-color: #633238;
+}
+
+html[data-theme="dark"] .past-events-text,
+html[data-theme="dark"] .past-events-year-heading h3,
+html[data-theme="dark"] .past-event-content h4 {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .past-events-intro > p:last-child,
+html[data-theme="dark"] .past-events-year-heading span,
+html[data-theme="dark"] .past-event-content p,
+html[data-theme="dark"] .past-events-empty {
+  color: var(--theme-muted);
+}
+
+html[data-theme="dark"] .past-events-year-selector button {
+  border-color: var(--theme-border);
+  background-color: var(--theme-surface-raised);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .past-events-year-selector button:hover,
+html[data-theme="dark"] .past-events-year-selector button:focus-visible,
+html[data-theme="dark"] .past-events-year-selector button[aria-pressed="true"] {
+  border-color: #72b889;
+  background-color: #28523b;
+  color: #e5f4e9;
+}
+
+html[data-theme="dark"] .past-event-image {
+  background-color: var(--theme-surface-raised);
+}
+
+html[data-theme="dark"] :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+  border-color: var(--theme-border);
+  background-color: var(--theme-page);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: var(--theme-muted);
+  opacity: 1;
+}
+
+html[data-theme="dark"] input[type="checkbox"],
+html[data-theme="dark"] input[type="radio"] {
+  accent-color: #72b889;
+}
+
+html[data-theme="dark"] table,
+html[data-theme="dark"] th,
+html[data-theme="dark"] td {
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .summary-table tr:nth-child(even) {
+  background-color: #203746;
+}
+
+html[data-theme="dark"] .summary-table tr:nth-child(odd) {
+  background-color: var(--theme-surface);
+}
+
+html[data-theme="dark"] .summary-table th {
+  background-color: #164b51;
+}
+
+html[data-theme="dark"] .board-label,
+html[data-theme="dark"] .meeting-bullet-list li::before,
+html[data-theme="dark"] .detail-bullet {
+  color: var(--theme-muted);
+}
+
+html[data-theme="dark"] .theme-switch {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .theme-switch[aria-checked="true"] .theme-switch-track {
+  background-color: #377cc0;
+}

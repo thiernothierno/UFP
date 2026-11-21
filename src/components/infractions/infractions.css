@@ -20,6 +20,11 @@ td {
   overflow: auto;
 }
 
+.infraction-table {
+  min-width: 4460px;
+  table-layout: fixed;
+}
+
 .custom-input {
   width: 50px;
   height: 30px;
@@ -37,10 +42,11 @@ td {
 }
 
 /* search bar  */
-.search-bar {
+.search-bar-infraction {
+  margin-top: 20px;
   padding: 10px;
   background-color: bisque;
   color: black;
-  width: 250px;
+  width: 224px;
   border: 1px solid #ccc;
 }

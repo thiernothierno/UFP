@@ -15,6 +15,15 @@ td {
   padding: 10px;
 }
 
+.table-scroll-wrapper {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.payment-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
 .custom-input {
   width: 50px;
   height: 30px;
@@ -27,18 +36,9 @@ td {
   background-color: bisque;
 }
 
-.payment-table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.table-scroll-wrapper {
-  max-height: 60vh;
-  overflow: auto;
-}
-
 .payment-table {
-  min-width: 1450px;
+  min-width: 1930px;
+  table-layout: fixed;
 }
 
 .payment-table .custom-input {
@@ -51,11 +51,11 @@ td {
 }
 
 /* search bar  */
-.search-bar {
+.search-bar-payment {
   margin-top: 20px;
   padding: 10px;
   background-color: bisque;
   color: black;
-  width: 250px;
+  width: 228px;
   border: 1px solid #ccc;
 }

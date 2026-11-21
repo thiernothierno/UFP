@@ -2,21 +2,18 @@
   margin: 40px;
 }
 
-h1 {
-  color: dodgerblue;
-}
-
 .about-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 35px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: 0;
 }
 
 .about-item h2 {
   font-size: 24px;
   margin-bottom: 16px;
+  color: darkgreen;
 }
 
 .about-item-content {

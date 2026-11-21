@@ -70,7 +70,7 @@ const MonthlyPaymentTracking = ({
       <input
         type="text"
         placeholder="Search by ID or First Name..."
-        className="search-bar"
+        className="search-bar-payment"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -85,7 +85,7 @@ const MonthlyPaymentTracking = ({
                 <th>ID</th>
                 <th>First_Name</th>
                 <th>Last_Name</th>
-                {months.map((month) => ( 
+                {months.map((month) => (
                   <th key={month}>{month}</th>
                 ))}
                 <th>Total</th>

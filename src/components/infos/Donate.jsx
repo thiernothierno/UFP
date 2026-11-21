@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import "./donate.css";
+
 import Header from "../navigation/Header";
 import Footer from "../navigation/Footer";
 
@@ -14,7 +14,7 @@ const Donate = () => {
       {/* Main content */}
       <main className="main-content">
         {/* Your website content goes here */}
-        <div class="about-grid">
+        {/* <div class="about-grid">
           <div class="about-item">
             <h2>Who We Are</h2>
             <p>donation page</p>
@@ -29,7 +29,7 @@ const Donate = () => {
             <h2>Our Mission</h2>
             <p></p>
           </div>
-        </div>
+        </div> */}
       </main>
 
       <Footer />

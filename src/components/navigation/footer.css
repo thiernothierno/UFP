@@ -1,11 +1,18 @@
 .footer {
+  box-sizing: border-box;
   background-color: dodgerblue;
   color: white;
   text-align: center;
   padding: 15px;
   font-size: 15px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
+  /* margin-top: 70px; */
+  min-height: 60px;
+  /* position: fixed;
+  left: 0;
+  bottom: 0; */
+}
+
+.footer p {
+  margin: 0;
 }

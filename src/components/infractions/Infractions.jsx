@@ -86,7 +86,7 @@ const Infractions = ({
       {/* Search */}
       <input
         type="text"
-        className="search-bar"
+        className="search-bar-infraction"
         placeholder="Search by ID or first name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -101,6 +101,7 @@ const Infractions = ({
           )}
           <div className="table-scroll-wrapper">
             <table
+              className="infraction-table"
               border="1"
               cellPadding="8"
               style={{ borderCollapse: "collapse" }}

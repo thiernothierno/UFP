@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./ThemeProvider";
 import PaymentStatus from "./layout/PaymentStatus";
 import "./App.css";
 import Rules from "./components/rules-and-regulations/Rules";
@@ -21,39 +22,41 @@ import SetPassword from "./components/member-home-page/SetPassword";
 import WithdrawalManager from "./components/withdraw/WithdrawalManager";
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Visitors see the public home; active members are redirected to their dashboard. */}
-        <Route path="/" element={<PublicHomeRoute />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/past-event" element={<PastEvents />} />
-        <Route path="/upcoming-event" element={<UpcomingEvents />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/donate" element={<Donate />} />
-        <Route path="/member-login" element={<MemberLoginPage />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/set-password" element={<SetPassword />} />
-        {/* All member pages inherit the session and active-profile check. */}
-        <Route
-          path="/user-login"
-          element={
-            <RequireActiveMember
-              render={(member) => <MemberHome member={member} />}
-            />
-          }
-        >
-          <Route index element={<h2>Member Home</h2>} />
-          <Route path="records" element={<PaymentStatus />} />
-          <Route path="rules" element={<Rules />} />
-          <Route path="ruling-schedule" element={<Schedule />} />
-          <Route path="meetings" element={<BoardMeetings />} />
-          <Route path="agenda" element={<AgendaSuggestion />} />
-          <Route path="assistance" element={<Assistance />} />
-          <Route path="meeting-summary" element={<MeetingSummary />} />
-          <Route path="withdrawal" element={<WithdrawalManager />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Visitors see the public home; active members are redirected to their dashboard. */}
+          <Route path="/" element={<PublicHomeRoute />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/past-event" element={<PastEvents />} />
+          <Route path="/upcoming-event" element={<UpcomingEvents />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/donate" element={<Donate />} />
+          <Route path="/member-login" element={<MemberLoginPage />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/set-password" element={<SetPassword />} />
+          {/* All member pages inherit the session and active-profile check. */}
+          <Route
+            path="/user-login"
+            element={
+              <RequireActiveMember
+                render={(member) => <MemberHome member={member} />}
+              />
+            }
+          >
+            <Route index element={<h2>Member Home</h2>} />
+            <Route path="records" element={<PaymentStatus />} />
+            <Route path="rules" element={<Rules />} />
+            <Route path="ruling-schedule" element={<Schedule />} />
+            <Route path="meetings" element={<BoardMeetings />} />
+            <Route path="agenda" element={<AgendaSuggestion />} />
+            <Route path="assistance" element={<Assistance />} />
+            <Route path="meeting-summary" element={<MeetingSummary />} />
+            <Route path="withdrawal" element={<WithdrawalManager />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

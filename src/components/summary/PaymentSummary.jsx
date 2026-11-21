@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./summary.css";
 
-const paymentMonths = [  
+const paymentMonths = [
   "Jan",
   "Fev",
   "Mar",
@@ -112,7 +112,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
         type="text"
         placeholder="Search by ID or First Name..."
         value={searchTerm}
-        className="search-bar"
+        className="search-bar-summary"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
@@ -125,7 +125,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
               <th>Last Name</th>
               <th>Missing Payment</th>
               <th>Infraction Total</th>
-              <th>Combined Total</th>
+              <th>Total Own</th>
             </tr>
           </thead>
 
