@@ -124,7 +124,7 @@ const PaymentSummary = ({ paymentRows, infractionRows }) => {
               <th>First Name</th>
               <th>Last Name</th>
               <th>Missing Payment</th>
-              <th>Infraction Total</th>
+              <th>Total Infraction</th>
               <th>Total Own</th>
             </tr>
           </thead>

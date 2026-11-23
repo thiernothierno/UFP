@@ -48,11 +48,13 @@ const Home = () => {
               <h2 id="home-headline">
                 Building a stronger
                 <br />
-                community, together.
+                brotherhood, together.
               </h2>
               <p>
                 Explore events open to members and visitors, learn about Union
-                for Progress, and find member resources and support.
+                for Progress, and find member resources and support. Explore
+                events open to members and visitors, learn about Union for
+                Progress, and find member resources and support.
               </p>
             </div>
             <div className="home-actions">

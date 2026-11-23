@@ -8,8 +8,8 @@ const navigationItems = [
     label: "Payments",
     links: [
       { label: "Monthly Payment", to: "/user-login/records?view=payments" },
-      { label: "Summary", to: "/user-login/records?view=summary" },
       { label: "Infraction", to: "/user-login/records?view=infractions" },
+      { label: "Summary", to: "/user-login/records?view=summary" },
     ],
   },
   {

@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import "./pastEvents.css";
+import "./upcomingEvents.css";
 import Header from "../navigation/Header";
 import Footer from "../navigation/Footer";
 
@@ -14,8 +14,8 @@ const UpcomingEvents = () => {
       {/* Main content */}
       <main className="main-content">
         {/* Your website content goes here */}
-        <div class="about-grid">
-          <h2>No Upcomming Event Posted</h2>
+        <div class="upcoming-grid">
+          <h2>No Upcoming Event Posted</h2>
         </div>
       </main>
 

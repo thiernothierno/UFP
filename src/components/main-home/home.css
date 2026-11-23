@@ -53,11 +53,17 @@
 }
 
 .home-copy p {
-  max-width: 450px;
-  margin-top: 20px;
   color: #444;
-  font-size: 1.15rem;
+  margin: 0 0 16px;
+  font-size: 1.125rem;
   line-height: 1.6;
+  letter-spacing: 0.5px;
+  word-spacing: 2px;
+  text-align: left;
+  text-indent: 20px;
+  /* border-radius: 6px; */
+  max-width: 60ch;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 .home-actions {

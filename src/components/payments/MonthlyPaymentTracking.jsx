@@ -83,8 +83,8 @@ const MonthlyPaymentTracking = ({
             <thead>
               <tr>
                 <th>ID</th>
-                <th>First_Name</th>
-                <th>Last_Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 {months.map((month) => (
                   <th key={month}>{month}</th>
                 ))}
