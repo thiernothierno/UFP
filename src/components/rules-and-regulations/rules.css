@@ -96,7 +96,7 @@
 }
 
 .rule-form {
-  width: 400px;
+  width: 100%;
   /* 1. Forces the form to stretch across flex parents */
   max-width: 600px;
   /* 2. Caps it at exactly 600px */
@@ -119,7 +119,7 @@
 
 .rule-form input,
 .rule-form textarea {
-  width: 300px;
+  width: 100%;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
