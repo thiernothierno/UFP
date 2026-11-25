@@ -50,6 +50,7 @@
   font-size: clamp(1.5rem, 2.8vw, 2.1rem);
   line-height: 1.15;
   color: dodgerblue;
+  text-align: center;
 }
 
 .home-copy p {
