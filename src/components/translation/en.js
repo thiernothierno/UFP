@@ -32,7 +32,7 @@ const en = {
 
 home_page: {
     title: "Building a stronger brotherhood, together.",
-    small_title: "Explore events open to members and visitors, learn about Union for Progress, and find member resources and support. Explore events open to members and visitors, learn about Union for Progress, and find member resources and support.",
+    description: "Explore events open to members and visitors, learn about Union for Progress, and find member resources and support. Explore events open to members and visitors, learn about Union for Progress, and find member resources and support.",
     member_login: "Member Login",
     join_us: "Join Us",
     footer: `©${year} UFP. All rights reserved`
@@ -60,7 +60,7 @@ upcoming_event : {
 
 contact_page: {
     title: "Contact Us",
-    small_title: "Feel free to use the form or send us an email",
+    description: "Feel free to use the form or send us an email",
     other_way_to_contact: "Other Way To Contact Us",
     first_name: "First Name",
     last_name: "Last Name",
@@ -98,16 +98,16 @@ member_payments : {
     payment : "Payments",
     infraction: "Infractions",
     summary: "Summary",
+    search : {
+            placeholder: "Search by ID or First Name"
+        },
     id : "ID",
-        first_name: "First Name",
-        last_name: "Last Name",
+    first_name: "First Name",
+    last_name: "Last Name",
 
     all_payments: {
         monthly_payment : "Monthly Payment",
         title: "Monthly Payment Tracking",
-        search : {
-            placeholder: "Search by ID or First Name"
-        },
         
         months_and_total : {
             jan : "Jan",
@@ -134,16 +134,129 @@ member_payments : {
 
     all_infractions: {
         infraction: "Infraction",
-        title: "Member Infraction Tracking"
+        title: "Member Infraction Tracking",
+        months_and_total : {
+            jan : {
+                month: "Jan",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            fev : {
+                month: "Fev",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            mar : {
+                month: "Mar",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            apr : {
+                month: "Apr",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            may : {
+                month: "May",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            jun: {
+                month: "Jun",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            jul: {
+                month: "Jul",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            aug: {
+                month: "Aug",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            sep: {
+                month: "Sep",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            oct: {
+                month: "Oct",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            nov: {
+                month: "Nov",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            dec: {
+                month: "Dec",
+                messenger : "MSG",
+                late: "Late",
+                absence: "Absence"
+            },
+            total: "Total",
+            grand_total: "Grand Total"
+        }
     },
 
       all_summary : {
-        summary: "Summary"
+        summary: "Summary",
+        title: "Annual Member Summary",
+        missing_payment: "Missing Payment",
+        total_infraction: "Total Infraction",
+        total_own : "Total Own"
+
     },
 
 
 
 },
+
+// Member rules and regulation
+
+all_rules : {
+    topic_1 : "Rules and Regulation",
+    topic_2 : "Ruling Schedule",
+
+    rules_and_regulation : {
+        title: "Rules & Regulations",
+        description: "Select a category to view its rules.",
+        title_social : "Social Rules",
+        title_regulations: "Regulations",
+        back_to_rule: "Back to Rules",
+        add_rule: "Add Rule",
+        create_rule : {  
+                add_new_rule: "Add New Rule",
+                rule_title: "Rule Title",
+                rule_placeholder : "Enter rule title",
+                description: "Description",
+                description_placeholder: "Describe the rule",
+                date: "Date Adopted",
+                adding_rule: "Add Rule",
+                cancelling_rule: "Cancel",
+
+            },  
+        
+
+    },
+    ruling_schedule: {
+        title: "Active Member Groups"
+    },
+}
 
 
     

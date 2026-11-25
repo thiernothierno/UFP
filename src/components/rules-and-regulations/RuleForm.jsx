@@ -1,12 +1,6 @@
 import { useState } from "react";
 
-const RuleForm = ({
-  category,
-  rule,
-  onSave,
-  onCancel,
-  isSaving = false,
-}) => {
+const RuleForm = ({ category, rule, onSave, onCancel, isSaving = false }) => {
   const [title, setTitle] = useState(rule?.title || "");
   const [description, setDescription] = useState(rule?.description || "");
   const [dateAdopted, setDateAdopted] = useState(rule?.dateAdopted || "");

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import RuleForm from "./RuleForm";
 
-
 const SocialRules = ({
   rules,
   onBack,

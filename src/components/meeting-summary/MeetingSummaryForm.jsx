@@ -71,7 +71,7 @@ function MeetingSummaryForm({ meeting, onSave, onCancel, isSaving = false }) {
         + Add Bullet Point
       </button>
 
-      <div className="meeting-form-actions">
+      <div className="meeting-summary-form-actions">
         <button type="submit" disabled={isSaving}>
           {isSaving ? "Saving..." : meeting ? "Update Summary" : "Save Summary"}
         </button>
