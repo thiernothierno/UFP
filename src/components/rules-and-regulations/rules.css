@@ -135,12 +135,11 @@
 }
 
 .rule-form-buttons button {
-  padding: 8px 14px;
+  padding: 8px 4px;
   cursor: pointer;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: dodgerblue;
-  padding: 8px;
   color: white;
   border-radius: 15px;
   font-size: 15px;
@@ -148,10 +147,10 @@
 
 .rule-form button,
 .rule-actions button {
-  padding: 8px 14px;
+  padding: 8px 10px;
   cursor: pointer;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .rule-actions {
