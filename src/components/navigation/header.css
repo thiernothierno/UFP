@@ -104,7 +104,7 @@
 .header-search-bar {
   display: flex;
   align-items: center;
-  width: 20px;
+  width: 300px;
   height: 42px;
   overflow: hidden;
   border: 1px solid #cbd4e2;

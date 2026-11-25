@@ -118,11 +118,7 @@ function MeetingForm({
 
       <div className="meeting-form-actions">
         <button type="submit" disabled={isSaving}>
-          {isSaving
-            ? "Saving..."
-            : meeting
-              ? "Update Meeting"
-              : "Save Meeting"}
+          {isSaving ? "Saving..." : meeting ? "Update Meeting" : "Save Meeting"}
         </button>
 
         <button type="button" onClick={onCancel} disabled={isSaving}>
