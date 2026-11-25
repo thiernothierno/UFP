@@ -17,9 +17,9 @@
   margin: 0;
 }
 
-.rules-title h2 {
+/* .rules-title h2 {
   margin-top: 20px;
-}
+} */
 
 .rules-toolbar {
   display: flex;
@@ -28,6 +28,7 @@
   flex-wrap: wrap;
   gap: 12px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .add-rules:hover,
