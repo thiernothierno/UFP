@@ -64,7 +64,7 @@ const RegulationRules = ({
         )}
       </div>
 
-      <h2>Regulations</h2>
+      <h2 className="rules-title">Regulations</h2>
       {loadError && <p role="alert">Could not load rules: {loadError}</p>}
       {saveError && <p role="alert">Could not save rule: {saveError}</p>}
       {deleteError && <p role="alert">Could not delete rule: {deleteError}</p>}
