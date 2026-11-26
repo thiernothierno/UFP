@@ -1,5 +1,6 @@
 const now = new Date();
 const year = now.getFullYear();
+const month = now.getMonth();
 
 const en = {
 
@@ -256,8 +257,63 @@ all_rules : {
     ruling_schedule: {
         title: "Active Member Groups"
     },
-}
+},
 
+// Meetings
+
+meetings : { 
+    title : "Board Meeting Details",
+    select_year: "Select Year",
+    month: {
+        jan: "January",
+        fev: "February",
+        mar: "March",
+        apr: "April",
+        may: "May", 
+        jun: "June",
+        jul: "July",
+        aug: "August",
+        sep: "September",
+        oct: "October",
+        nov: "November",
+        dec: "December"
+    },
+
+    create_meeting :{
+        title: `${month} ${year} Meeting`,
+        description: "No meeting details have been posted for this month.",
+        add_meeting: "+ Add Meeting Details",
+        meeting_detail : {
+            title: "Add Meeting Details",
+            date: "Meeting Date",
+            time: "Start Time",
+            location: "Location",
+            topics: "Meeting Details",
+            add_topic: "+ Add Bullet Point",
+            save: "Save Meeting",
+            cancel: "Cancel"
+        }
+    }
+
+
+
+},
+
+// Agenda
+
+agenda: {
+    title: "Any topic you want to share?",
+    post_agenda: "Post Your Topic",
+    create_agenda : {
+        title: "Create agenda post",
+        agenda_proposol: "Agenda Proposal",
+        description: "Description",
+        submit: "Submit ",
+        cancel: "Cancel"
+    },
+    agenda_suggestion: "Agenda Suggestion"
+
+}
 
     
 };

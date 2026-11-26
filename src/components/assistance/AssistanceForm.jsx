@@ -39,7 +39,7 @@ const AssistanceForm = ({ post, onSave, onCancel, isSaving = false }) => {
 
       <div className="assistance-form-buttons">
         <button type="submit" disabled={isSaving}>
-          {isSaving ? "Saving..." : post ? "Save Changes" : "Submit Post"}
+          {isSaving ? "Saving..." : post ? "Save Changes" : "Submit"}
         </button>
 
         <button type="button" onClick={onCancel} disabled={isSaving}>

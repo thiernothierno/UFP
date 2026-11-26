@@ -74,6 +74,12 @@ const Header = ({ isMemberView = false }) => {
 
         <ul className="nav-right">
           <li>
+            <select name="" id="">
+              <option value="1">English</option>
+              <option value="2">French</option>
+            </select>
+          </li>
+          <li>
             <button
               className="theme-switch"
               type="button"

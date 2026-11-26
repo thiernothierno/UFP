@@ -17,7 +17,7 @@ const AgendaForm = ({ post, onSave, onCancel, isSaving = false }) => {
     <form className="agenda-form" onSubmit={handleSubmit}>
       <h3>{post ? "Edit agenda post" : "Create agenda post"}</h3>
 
-      <label>Agenda Proposal</label>
+      <label>Agenda Title</label>
       <input
         type="text"
         value={title}
@@ -37,7 +37,7 @@ const AgendaForm = ({ post, onSave, onCancel, isSaving = false }) => {
 
       <div className="agenda-form-buttons">
         <button type="submit" disabled={isSaving}>
-          {isSaving ? "Saving..." : post ? "Save Changes" : "Submit Post"}
+          {isSaving ? "Saving..." : post ? "Save Changes" : "Submit"}
         </button>
 
         <button type="button" onClick={onCancel} disabled={isSaving}>
